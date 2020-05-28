@@ -1,0 +1,64 @@
+\section{Dataset}
+\section{Machine Learning Preliminaries}
+\subsection{Outstanding network structure $\leftarrow$ \textbf{change this weird name!!!!}}
+good models such as skip connections. residual blocks, dense conv and attention
+\subsection{Machine learning methods in medical domain}
+such as Unet
+\section{Data augmentation}
+In medical domain, huge dataset consists of large numbers of carefully labelled samples is rarely available due to heavy workload for annotations, rarity of disease, ethic issues of data acquire process and data privacy. Furthermore, different data acquire protocols (i.e. CT machines used by different hospitals) brings difficulties to clinical practice for good accuracy of existing pre-trained models. As a result, few shot learning and/or few shot segmentation has been explored in recent years. 
+In this section, we focus on various approaches that has been used in current literature which aim to explore the potential of existing training samples through various augmentation methods to alliviate the insufficient training samples. We focus the discussion on both data augmentation and take into consideration the number of samples used in each work.
+
+\subsection{Traditional Data Augmentation}
+Traditional Data augmentation method in imaging domain refers to the process that does not require such training data to learn a transformation.\\
+
+\cite{zhang_when_2019} investigated data augmentation methods under 3D medical domain of MR and ultrasound images. 
+The data augmentation process consists of a sequence of traditional transformation techniques. The paper argued that sharpness in medical images during training process limits model generalization thus applying gaussian filter to images take noise into consideration. Brightness and contrast difference caused by variations in scanning protocols brings potential domain shift thus a sequenced random shift followed gamma correction and random linear transform in intensity are reasonable data augmentation methods. Finally spatial transformations including rotation, scaling and deformation is added to the augmentation process.
+The source domain in this method is Prostate dataset \footnote{http://medicaldecathlon.com/index.html\#tasks} consists 48 4D volumes.
+We argue here that the stacked transformation is physical transformation process independent to the size of dataset because no learning or training process is required in this augmentation method thus might bring benefits to our task. However we doubt the improvement due to the difference between CT and MR images.\\
+
+%%%---------
+Another method by \cite{zhang_mixup_2018} based on generic vicinal distribution, which generates new samples through interpolation between two existing data. The author argued that this method works as a regularizer which encourages linear behavior between training samples. In terms of imaging, the augmentation is applied to CIFAR 10 (2D non medical) Dataset.
+The work was originally implemented on training GANs. Later in medical domain, \cite{panfilov_improving_2019} further investigated mixup method on Knee MR images on OIA database \footnote{http://www.oai.ucsf/.edu/} that consists of 88 3D MRI scans. The work showed mixup improves generalization under their experiment setup while having risk of slight underfitting due to to the strong regularization. The author further mentioned not using weight decay in the experiment solve the underfitting issue.
+\cite{tajbakhsh_embracing_2020} summarized mixup augmentation method gives "soft labels". Variations of the mixup method utilize asymmetric is further explored in \cite{li_overfitting_2019} trained on Brain MR images, and the method reports huge gain under their experiment setup.
+We here cannot gaurantee the effectiveness of this augmentation method due to the domain difference between MRI and CT scans.
+
+\subsection{Learning for augmentation}
+We here consider two types of popular architectures commonly used in imaging data augmentation, Gan based and learning transformations.
+
+
+Now HERE SHOULD BE MORE GAN BASED Methods
+
+%
+%\subsection{General Segmentation methods}
+
+\section{Few-shot learning in medical application}
+\subsection{Transfer learning $\leftarrow$ need to rethink the title}
+In medical domain, few shot learning mainly focus on transfer learning from pretrained networks
+\subsubsection{Leveraging non medical datasets}
+Although recent machine learning community have seen a growing number of medical segmentation public dataset available, the amount of data samples is still less desirable compared to natural, non-medical datasets. Thus researchers have seek for methods that leverage natural images.\\
+
+In Lung CT segmentation area, Sports-1M dataset has been used as source domain to train a multi-task learning model for nodule malignacy prediction and rating \cite{hussein_risk_2017}. The author reported significant improvement in the prediction accuracy, however, did not mention the proportion of data used for transer training.
+
+
+
+\subsubsection{Across disease transfer learning}
+People tend to choose datasets from closer domain for transfer learning. It is reasonable to consider methods that transfer across disease in the same structure under the same modality. In our case, we might want to investigate transfer learning from NSCLC Dataset to Covid segmentation set given that both of them are lung CT scans.\\
+
+Recent work explored several transfer learning training techniques under MRI domain \cite{wang_improving_2019}. The paper evaluated three transfer learning methods trained on 3D UNet by Fine tuning the last three layers, Fine tuning the decoder and Fine tuning all model parameters. 
+The Source Dataset: Multiple Sclerosis Dataset consists 3630 MRI volumes and used Brain Tumor Dataset as Target dataset including210 high-grade glioma (HGG) and 75 low-grade glioma (LGG) Brain MRI scans. The training target is a decaying weighted categorical cross entropy loss weighted by relative voxel. Their best validation performance of pre-trained network achieved validation performance AUC 0.77. Experiment result on 20, 50, 100 and 150 samples during Fine tuning respectively showed that Fine tuning all parameters out performed the rest methods in most cases.\\
+
+One potential drawback is that compared to the our task, the target training set is relatively larger, the performance is expected to be less ideal when using "fine tune all" method transfer using 4 or less volumes in our case.
+
+\section{Few shot learning in non-medical domain}
+\subsection{Beyond transfer learning}
+Given medical image segmentation task is a subset of semantic segmentation, we  further want to discuss a few methods in natural non medical dataset. The work in this larger application domain have gone beyond pre-training network then fine tuning parameters, and tend to provide correct segmentation for few labelled samples from dense to sparse annotations.\\
+
+Transfer learning methods usually require small samples to update millions of parameters that take the risk of overfitting, while current meta learning methods gives desirable performance in classification tasks \cite{shaban_one-shot_2017}. A direct extension using Siamese Network of meta learning classification to pixel-wise segmentation may failed to scale well enough, but this idea inspire the work in \cite{shaban_one-shot_2017} that proposed a two-branch network for few-shot semantic segmentation. The work assumes that semantic class labels for training and testing have no overlap, that is $L_{train} \cap L_{test}= \varnothing$.
+
+
+
+
+
+
+
+
