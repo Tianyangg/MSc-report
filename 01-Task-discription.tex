@@ -1,8 +1,39 @@
 \section{Motivation}
+Computed Tomography(CT) is widely used for diagnosing Covid-19 outbreak and tremendous studies\footnote{https://github.com/HzFu/COVID19\_imaging\_AI\_paper\_list\#technical\_CT} reported deep learning can potentially provide fast and accurate image analysis while most of them train on massive dataset with more than 1000 annotated CT scans. However, until today (May $29^{th}$, 2020) non of those huge dataset is available for public research.\\
 
-We here describe the problem setup for this project. The project aims to explore several few shot segmentation methods in medical domain, specifically 3D Lung computed tomography (CT) images. One of the target for this method is to provide solutions to the few shot segmentation challenge proposed in the COVID19 segmentation benchmark\footnote{http://medicalsegmentation.com/covid19/}. Given this is a relatively small dataset and might not present good evaluation to the result, we also plan to evaluate the performance on Strucseg dataset.
+To compensate the lack of annotated dataset on Covid-19 Lung CT scans, researchers developed a small Covid-19 CT infection segmentation benchmark \cite{COVID-19-CT-Seg-Dataset}\cite{COVID-19-SegBenchmark} consists of 20 annotated CT scans available to public. Meanwhile they also proposed three segmentation tasks:
+\begin{enumerate}
+	\item Learning with limited annotations
+	\item Lerning to segment Covid-19 CT from non Covid-19 CT scans
+	\item Learning with both Covid-19 and non Covid-19 CT scans
+\end{enumerate}
+Task 1 and 3 are few shot segmentation tasks because only 4 volumes are allowed for training and the rest are for testing to report a 5-fold cross validation result according to the proposal \footnote{http://medicalsegmentation.com/covid19/}\\
+
+We aims to explore several few shot segmentation methods in medical domain in this project, specifically 3D CT images. One of the target is to provide solutions to the few shot segmentation challenge proposed in the COVID19 segmentation benchmark. Given this is a relatively small dataset and might not present good evaluation of robustness analysis, we also plan to evaluate the performance on other lung CT segmentation datasets.
+
 \section{Feasibility}
-\section{Challenge}
-In non-medical domain, both few shot classification and few shot segmentation has been well explored and provide good performance on some of the segmentation benchmarks. In medical application, few shot learning mainly focus on classification tasks while dense segmentation does not provide promising results as far as we know.\\
+We first explain the feasibility. The proposer of the benchmark have done some of the basic training for task 1 with 3D Unet model and reported acceptable performance (see table \ref{tab:segfewshottrain}). Based on the reported Dice score and Surface distance, we assume this few-shot segmentation problem is feasible, and decide to investigate further into few-shot segmentation in medical domain.
 
-We so far beleive the task is doable based on the previous analysis. We aim to implement a method that provide comparable performance compared to U-net, which is a good model on small sample medical image segmentation.
+\begin{table}
+	\begin{tabular}{c|cc|cc|cc}
+	\hline \multirow{2}{*} { Subtask } & \multicolumn{4}{|c|} { Lung } & \multicolumn{2}{c} { Infection } \\ 
+	\cline { 2 - 7 } & \multicolumn{2}{|c|} { Left Lung } & \multicolumn{2}{c|} { Right Lung } & \multicolumn{2}{c} { NSD } \\ 
+	\cline { 2 - 7 } & DSC & NSD & DSC & NSD & DSC & 7021.3 \\ 
+	\hline Fold-0 & 84.98 .2 & 68.713 .3 & 85.213 .0 & 70.615 .8 & 68.120 .5 & 70.923 .0 \\ 
+	Fold-1 & 80.314 .5 & 61.815 .1 & 83.99 .6 & 68.39 .0 & 71.320 .5 & 71.823 .0 \\ 
+	Fold-2 & 87.112 .1 & 74.316 .0 & 90.38 .2 & 78.512 .0 & 66.221 .7 & 71.724 .2 \\ 
+	Fold-3 & 88.47 .0 & 75.28 .8 & 89.96 .3 & 78.58 .0 & 68.123 .1 & 70.827 .1 \\ 
+	Fold-4 & 88.376 .0 & 75.811 .0 & 90.27 .0 & 78.310 .2 & 62.726 .9 & 64.928 .2 \\ 
+	\hline Avg & \(\mathbf{8 5 . 8 1 0 . 5}\) & \(\mathbf{7 1 . 2 1 3 . 8}\) & \(\mathbf{8 7 . 9 9 . 3}\) & \(\mathbf{7 4 . 8 1 1 . 9}\) & \(\mathbf{6 7 . 3 2 2 . 3}\) & \(\mathbf{7 0 . 0 2 4 . 4}\) \\ \hline
+	\end{tabular}
+	\caption{Dice score and Normalised Surface Distance reported in work \cite{COVID-19-SegBenchmark}}
+	\label{tab:segfewshottrain}
+\end{table}
+
+
+
+\section{Challenge}
+% TODO cite the paper by IEEE invite and report it as future work
+In non-medical domain, both few shot classification and few shot segmentation has been explored and provide good performance on some of the segmentation benchmarks. In medical application, however, few-shot learning mainly focus on classification tasks while dense segmentation does not provide promising results as far as we know.\\
+
+We so far believe the task is doable based on the previous analysis. We aim to implement methods that provide comparable performance compared to U-net and V-net, which are good models on small sample medical image segmentation. The task however might not provide satisfactory results given the current dataset. In the "future work" section in the review of current deep learning methods related to COVID19 in paper \cite{shi_review_2020}, the author mentioned the explainability of network prediction. We might use class activation maps followed his suggestion to see why the the implemented method give the result, in both good and less desirable cases \textbf{if time permits}.

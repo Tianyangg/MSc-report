@@ -1,5 +1,148 @@
 
 
+@incollection{ourselin_3d_2016,
+	location = {Cham},
+	title = {3D U-Net: Learning Dense Volumetric Segmentation from Sparse Annotation},
+	volume = {9901},
+	isbn = {978-3-319-46722-1 978-3-319-46723-8},
+	url = {http://link.springer.com/10.1007/978-3-319-46723-8_49},
+	shorttitle = {3D U-Net},
+	abstract = {This paper introduces a network for volumetric segmentation that learns from sparsely annotated volumetric images. We outline two attractive use cases of this method: (1) In a semi-automated setup, the user annotates some slices in the volume to be segmented. The network learns from these sparse annotations and provides a dense 3D segmentation. (2) In a fully-automated setup, we assume that a representative, sparsely annotated training set exists. Trained on this data set, the network densely segments new volumetric images. The proposed network extends the previous u-net architecture from Ronneberger et al. by replacing all 2D operations with their 3D counterparts. The implementation performs on-the-ﬂy elastic deformations for eﬃcient data augmentation during training. It is trained end-to-end from scratch, i.e., no pre-trained network is required. We test the performance of the proposed method on a complex, highly variable 3D structure, the Xenopus kidney, and achieve good results for both use cases.},
+	pages = {424--432},
+	booktitle = {Medical Image Computing and Computer-Assisted Intervention – {MICCAI} 2016},
+	publisher = {Springer International Publishing},
+	author = {Çiçek, Özgün and Abdulkadir, Ahmed and Lienkamp, Soeren S. and Brox, Thomas and Ronneberger, Olaf},
+	editor = {Ourselin, Sebastien and Joskowicz, Leo and Sabuncu, Mert R. and Unal, Gozde and Wells, William},
+	urldate = {2020-05-29},
+	date = {2016},
+	langid = {english},
+	doi = {10.1007/978-3-319-46723-8_49},
+	note = {Series Title: Lecture Notes in Computer Science},
+	file = {3D-UNet.pdf:/Users/tianyangsun/Desktop/Paper archive/Unet and friends/3D-UNet.pdf:application/pdf}
+}
+
+@article{oktay_attention_2018,
+	title = {Attention U-Net: Learning Where to Look for the Pancreas},
+	url = {http://arxiv.org/abs/1804.03999},
+	shorttitle = {Attention U-Net},
+	abstract = {We propose a novel attention gate ({AG}) model for medical imaging that automatically learns to focus on target structures of varying shapes and sizes. Models trained with {AGs} implicitly learn to suppress irrelevant regions in an input image while highlighting salient features useful for a speciﬁc task. This enables us to eliminate the necessity of using explicit external tissue/organ localisation modules of cascaded convolutional neural networks ({CNNs}). {AGs} can be easily integrated into standard {CNN} architectures such as the U-Net model with minimal computational overhead while increasing the model sensitivity and prediction accuracy. The proposed Attention U-Net architecture is evaluated on two large {CT} abdominal datasets for multi-class image segmentation. Experimental results show that {AGs} consistently improve the prediction performance of U-Net across different datasets and training sizes while preserving computational efﬁciency. The source code for the proposed architecture is publicly available.},
+	journaltitle = {{arXiv}:1804.03999 [cs]},
+	author = {Oktay, Ozan and Schlemper, Jo and Folgoc, Loic Le and Lee, Matthew and Heinrich, Mattias and Misawa, Kazunari and Mori, Kensaku and {McDonagh}, Steven and Hammerla, Nils Y. and Kainz, Bernhard and Glocker, Ben and Rueckert, Daniel},
+	urldate = {2020-05-29},
+	date = {2018-05-20},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {1804.03999},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition},
+	file = {Attention Unet.pdf:/Users/tianyangsun/Desktop/Paper archive/Unet and friends/Attention Unet.pdf:application/pdf}
+}
+
+@article{ronneberger_u-net_2015,
+	title = {U-Net: Convolutional Networks for Biomedical Image Segmentation},
+	url = {http://arxiv.org/abs/1505.04597},
+	shorttitle = {U-Net},
+	abstract = {There is large consent that successful training of deep networks requires many thousand annotated training samples. In this paper, we present a network and training strategy that relies on the strong use of data augmentation to use the available annotated samples more eﬃciently. The architecture consists of a contracting path to capture context and a symmetric expanding path that enables precise localization. We show that such a network can be trained end-to-end from very few images and outperforms the prior best method (a sliding-window convolutional network) on the {ISBI} challenge for segmentation of neuronal structures in electron microscopic stacks. Using the same network trained on transmitted light microscopy images (phase contrast and {DIC}) we won the {ISBI} cell tracking challenge 2015 in these categories by a large margin. Moreover, the network is fast. Segmentation of a 512x512 image takes less than a second on a recent {GPU}. The full implementation (based on Caﬀe) and the trained networks are available at http://lmb.informatik.uni-freiburg.de/people/ronneber/u-net.},
+	journaltitle = {{arXiv}:1505.04597 [cs]},
+	author = {Ronneberger, Olaf and Fischer, Philipp and Brox, Thomas},
+	urldate = {2020-05-29},
+	date = {2015-05-18},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {1505.04597},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition},
+	file = {Unet.pdf:/Users/tianyangsun/Desktop/Paper archive/Unet and friends/Unet.pdf:application/pdf}
+}
+
+@incollection{stoyanov_unet_2018,
+	location = {Cham},
+	title = {{UNet}++: A Nested U-Net Architecture for Medical Image Segmentation},
+	volume = {11045},
+	isbn = {978-3-030-00888-8 978-3-030-00889-5},
+	url = {http://link.springer.com/10.1007/978-3-030-00889-5_1},
+	shorttitle = {{UNet}++},
+	abstract = {In this paper, we present {UNet}++, a new, more powerful architecture for medical image segmentation. Our architecture is essentially a deeply-supervised encoder-decoder network where the encoder and decoder sub-networks are connected through a series of nested, dense skip pathways. The re-designed skip pathways aim at reducing the semantic gap between the feature maps of the encoder and decoder sub-networks. We argue that the optimizer would deal with an easier learning task when the feature maps from the decoder and encoder networks are semantically similar. We have evaluated {UNet}++ in comparison with U-Net and wide U-Net architectures across multiple medical image segmentation tasks: nodule segmentation in the low-dose {CT} scans of chest, nuclei segmentation in the microscopy images, liver segmentation in abdominal {CT} scans, and polyp segmentation in colonoscopy videos. Our experiments demonstrate that {UNet}++ with deep supervision achieves an average {IoU} gain of 3.9 and 3.4 points over U-Net and wide U-Net, respectively.},
+	pages = {3--11},
+	booktitle = {Deep Learning in Medical Image Analysis and Multimodal Learning for Clinical Decision Support},
+	publisher = {Springer International Publishing},
+	author = {Zhou, Zongwei and Rahman Siddiquee, Md Mahfuzur and Tajbakhsh, Nima and Liang, Jianming},
+	editor = {Stoyanov, Danail and Taylor, Zeike and Carneiro, Gustavo and Syeda-Mahmood, Tanveer and Martel, Anne and Maier-Hein, Lena and Tavares, João Manuel R.S. and Bradley, Andrew and Papa, João Paulo and Belagiannis, Vasileios and Nascimento, Jacinto C. and Lu, Zhi and Conjeti, Sailesh and Moradi, Mehdi and Greenspan, Hayit and Madabhushi, Anant},
+	urldate = {2020-05-29},
+	date = {2018},
+	langid = {english},
+	doi = {10.1007/978-3-030-00889-5_1},
+	note = {Series Title: Lecture Notes in Computer Science},
+	file = {Unet++.pdf:/Users/tianyangsun/Desktop/Paper archive/Unet and friends/Unet++.pdf:application/pdf}
+}
+
+@article{milletari_v-net_2016,
+	title = {V-Net: Fully Convolutional Neural Networks for Volumetric Medical Image Segmentation},
+	url = {http://arxiv.org/abs/1606.04797},
+	shorttitle = {V-Net},
+	abstract = {Convolutional Neural Networks ({CNNs}) have been recently employed to solve problems from both the computer vision and medical image analysis ﬁelds. Despite their popularity, most approaches are only able to process 2D images while most medical data used in clinical practice consists of 3D volumes. In this work we propose an approach to 3D image segmentation based on a volumetric, fully convolutional, neural network. Our {CNN} is trained end-to-end on {MRI} volumes depicting prostate, and learns to predict segmentation for the whole volume at once. We introduce a novel objective function, that we optimise during training, based on Dice coeﬃcient. In this way we can deal with situations where there is a strong imbalance between the number of foreground and background voxels. To cope with the limited number of annotated volumes available for training, we augment the data applying random non-linear transformations and histogram matching. We show in our experimental evaluation that our approach achieves good performances on challenging test data while requiring only a fraction of the processing time needed by other previous methods.},
+	journaltitle = {{arXiv}:1606.04797 [cs]},
+	author = {Milletari, Fausto and Navab, Nassir and Ahmadi, Seyed-Ahmad},
+	urldate = {2020-05-29},
+	date = {2016-06-15},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {1606.04797},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition},
+	file = {Vnet.pdf:/Users/tianyangsun/Desktop/Paper archive/Unet and friends/Vnet.pdf:application/pdf}
+}
+
+@article{shi_review_2020,
+	title = {Review of Artificial Intelligence Techniques in Imaging Data Acquisition, Segmentation and Diagnosis for {COVID}-19},
+	issn = {1937-3333, 1941-1189},
+	url = {https://ieeexplore.ieee.org/document/9069255/},
+	doi = {10.1109/RBME.2020.2987975},
+	pages = {1--1},
+	journaltitle = {{IEEE} Reviews in Biomedical Engineering},
+	shortjournal = {{IEEE} Rev. Biomed. Eng.},
+	author = {Shi, Feng and Wang, Jun and Shi, Jun and Wu, Ziyan and Wang, Qian and Tang, Zhenyu and He, Kelei and Shi, Yinghuan and Shen, Dinggang},
+	urldate = {2020-05-29},
+	date = {2020},
+	langid = {english},
+	file = {Review of Artificial Intelligence Techniques in Imaging Data Acquisition, Segmentation and Diagnosis for COVID-19.pdf:/Users/tianyangsun/Desktop/Paper archive/Review of Artificial Intelligence Techniques in Imaging Data Acquisition, Segmentation and Diagnosis for COVID-19.pdf:application/pdf}
+}
+
+@article{COVID-19-SegBenchmark,
+  title={Towards Efficient COVID-19 CT Annotation: A Benchmark for Lung and Infection Segmentation},
+  author={Ma Jun and Wang Yixin and An Xingle and Ge Cheng and Yu Ziqi and Chen Jianan and Zhu Qiongjie and Dong Guoqiang and He Jian and He Zhiqiang and Ni Ziwei and Yang Xiaoping},
+  journal={arXiv preprint arXiv:2004.12537},
+  year={2020}
+}
+
+@dataset{COVID-19-CT-Seg-Dataset,
+  author       = {Ma Jun and
+                  Ge Cheng and
+                  Wang Yixin and
+                  An Xingle and
+                  Gao Jiantao and
+                  Yu Ziqi and
+                  Zhang Minqing and
+                  Liu Xin and
+                  Deng Xueyuan and
+                  Cao Shucheng and
+                  Wei Hao and
+                  Mei Sen and
+                  Yang Xiaoyu and
+                  Nie Ziwei and
+                  Li Chen and
+                  Tian Lu and
+                  Zhu Yuntao and
+                  Zhu Qiongjie and
+                  Dong Guoqiang and
+                  He Jian},
+  title        = {{COVID-19 CT Lung and Infection Segmentation 
+                   Dataset}},
+  month        = Apr,
+  year         = 2020,
+  publisher    = {Zenodo},
+  version      = {1.0},
+  doi          = {10.5281/zenodo.3757476},
+  url          = {https://doi.org/10.5281/zenodo.3757476}
+}
+
 @incollection{suk_brain_2019,
 	location = {Cham},
 	title = {Brain {MR} Image Segmentation in Small Dataset with Adversarial Defense and Task Reorganization},
