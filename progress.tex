@@ -1,5 +1,11 @@
-\section{Dataset}
+\section{Medical Segmentation data}
 % TODO dataset introduction and summarize
+Due to restrictions in medical data, one of the problem we faced is finding some potentially useful segmentation dataset. We found it reasonable to start with same domain dataset so we focus the dataset on Lung CT volumes.
+\begin{itemize}
+	\item NSCLC (Non small cell Lung Cancer) Dataset consists of 402 CT scans where 78 cases has Pleural Effusion(PE). Besides the PE label, left and right lung mask is provided for segmentation training.
+	\item MSD Tumor segmentation dataset consists of 63 labelled volumes non small cell lung cancer infected area. Unfortunately lung area are not labeled.
+	\item Strucseg Dataset consists of 50 lung cancer patients of Lung cancer. Both organ segmentation and gross target segmentation data is annotated. However, the dataset require some documentation work and we have signed the data agreement to their email, and we cannot guarantee they will reply.
+	\end{itemize}
 \section{Data preprocessing}
-\subsection{Brief plan}
-\subsection{robustness}
+\section{Basic result}
+\section{Brief plan}

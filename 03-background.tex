@@ -73,3 +73,22 @@ Paper \cite{suk_brain_2019} trained segmentation of Brain MR image on 7 brain vo
 \subsection{Special network design}
 Transfer learning methods usually require small samples to update millions of parameters that take the risk of overfitting \cite{shaban_one-shot_2017}. The design of multiple branch network, usually includes conditioner arm and segmentation arms inspired the deep learning in medical domain to go beyond transfer learning while encourage a stronger between-arms interaction to compensate the lacking in pre-trained model \cite{roy_squeeze_2019}. The proposed method perform 3D volume segmentation at test time while use 2D images during training. However the method requires start and end slice to be indicated for each query volume and still not achieving good dice score.
 
+\begin{table}
+\begin{tabular}{p{1cm} p{5cm} p{4cm} p{4cm}}
+\hline
+Paper    & Method                                & Domain Details                                          & Task                                       \\
+\hline
+{[}14{]} & Design Conditional Branch             & Target PASCAL-5        & Few shot segmentation                      \\
+{[}15{]} & Guidance network                      & Target PASCAL VOC             & Few shot segmentation                      \\
+{[}16{]} & Non medical to medical transfer       & Source: Sports-1M;  Target: Lung nodule                  & Multi-task learning: prediction and rating \\
+{[}17{]} & Across domain transfer                & Source: MSD; Target: Brain Tumor Dataset & Segmentation                               \\
+{[}13{]} & Augmentation+pixel dense segmentation & Only trained on 7 brain Volumes                         & Dense segmentation                         \\
+{[}14{]} & Branch network design                 & --                                                      & Segmentation                               \\
+\hline
+\end{tabular}
+\caption{Small sample methods in medical and non-medical domain}
+\label{tab:small sample learning}
+\end{table}	
+
+
+
