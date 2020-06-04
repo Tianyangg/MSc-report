@@ -12,7 +12,9 @@ The source domain in this method is Prostate dataset \footnote{http://medicaldec
 We argue here that the stacked transformation is physical transformation process independent to the size of dataset because no learning or training process is required in this augmentation method thus might bring benefits to our task. However we doubt the improvement due to the difference between CT and MR images.\\
 
 %%%---------
-Another method "mixup" by \cite{zhang_mixup_2018} based on generic vicinal distribution, which generates new samples through interpolation between two existing data. The author argued that this method works as a regularizer which encourages linear behavior between training samples. In terms of imaging, the augmentation is applied to CIFAR 10 (2D non medical) Dataset.
+Another method "mixup" by \cite{zhang_mixup_2018} based on generic vicinal distribution, which generates new samples through interpolation between two existing data. The author argued that this method works as a regularizer which encourages linear behavior between training samples. In terms of imaging, the augmentation is applied to CIFAR 10 (2D non medical) Dataset. The calculation method in paper follows the following equations where $x_{i}$ and $x_{j}$ are training examples and $\lambda$ is usually sampled from beta distribution.
+$$\tilde{x}=\lambda x_{i}+(1-\lambda) x_{j}$$
+$$\tilde{y}=\lambda y_{i}+(1-\lambda) y_{j}$$
 The work was originally implemented on training GANs. Later in medical domain, \cite{panfilov_improving_2019} further investigated mixup method on Knee MR images on OIA database \footnote{http://www.oai.ucsf/.edu/} that consists of 88 3D MRI scans. The work showed mixup improves generalization under their experiment setup while having risk of slight underfitting due to to the strong regularization. The author further mentioned not using weight decay in the experiment solve the underfitting issue.
 \cite{tajbakhsh_embracing_2020} summarized mixup augmentation method gives "soft labels". Variations of the mixup method utilize asymmetric is further explored in \cite{li_overfitting_2019} trained on Brain MR images, and the method reports huge gain under their experiment setup.
 We cannot guarantee the effectiveness of this augmentation method due to the domain difference between MRI and CT scans.
@@ -21,7 +23,7 @@ We cannot guarantee the effectiveness of this augmentation method due to the dom
 Following the traditional augmentation methods, we here want to discuss a few medical image augmentation based on deep learning. Specifically we focus on those who used one or a few data during the augmentation which is close to the problem we are facing.\\
 
 %TODO citation in adversarial defense
-Adversarial defense was deployed in \cite{suk_brain_2019} for the augmentation of small samples in Brain MR segmentation. Adversarial samples generated though Fast Gradient Sign Method\cite{} and then added as training data to improve the robustness, which according the study in \cite{} without decreasing the performance. So far we believe this method worth trying because the experiment was trained on 7 brain volumes, which is close to our task.\\
+Adversarial defense was deployed in \cite{suk_brain_2019} for the augmentation of small samples in Brain MR segmentation. Adversarial samples generated though Fast Gradient Sign Method\cite{goodfellow_explaining_2015} and then added as training data to improve the robustness. So far we believe this method worth trying because the experiment was trained on 7 brain volumes, which is close to our task.\\
 
 
 \begin{table}
@@ -84,12 +86,12 @@ Paper \cite{suk_brain_2019} trained segmentation of Brain MR image on 7 brain vo
 \hline
 Paper    & Method                                & Domain Details                                          & Task                                       \\
 \hline
-{[}14{]} & Design Conditional Branch             & Target PASCAL-5        & Few shot segmentation                      \\
-{[}15{]} & Guidance network                      & Target PASCAL VOC             & Few shot segmentation                      \\
-{[}16{]} & Non medical to medical transfer       & Source: Sports-1M;  Target: Lung nodule                  & Multi-task learning: prediction and rating \\
-{[}17{]} & Across domain transfer                & Source: MSD; Target: Brain Tumor Dataset & Segmentation                               \\
-{[}13{]} & Augmentation+pixel dense segmentation & Only trained on 7 brain Volumes                         & Dense segmentation                         \\
-{[}14{]} & Branch network design                 & --                                                      & Segmentation                               \\
+{\cite{shaban_one-shot_2017}} & Design Conditional Branch             & Target PASCAL-5        & Few shot segmentation                      \\
+{\cite{rakelly_few-shot_nodate}} & Guidance network                      & Target PASCAL VOC             & Few shot segmentation                      \\
+{\cite{hussein_risk_2017}} & Non medical to medical transfer       & Source: Sports-1M;  Target: Lung nodule                  & Multi-task learning: prediction and rating \\
+{\cite{wang_improving_2019}} & Across domain transfer                & Source: MSD; Target: Brain Tumor Dataset & Segmentation                               \\
+{\cite{shaban_one-shot_2017}} & Augmentation+pixel dense segmentation & Only trained on 7 brain Volumes                         & Dense segmentation                         \\
+{\cite{suk_brain_2019}}  & Branch network design                 & --                                                      & Segmentation                               \\
 \hline
 \end{tabular}
 \caption{Small sample methods in medical and non-medical domain}

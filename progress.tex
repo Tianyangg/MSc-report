@@ -6,11 +6,20 @@ Due to restrictions in medical data, one of the problem we faced is finding some
 	\item MSD Tumor segmentation dataset consists of 63 labelled volumes non small cell lung cancer infected area. Unfortunately lung area are not labeled.
 	\item Strucseg Dataset consists of 50 lung cancer patients of Lung cancer. Both organ segmentation and gross target segmentation data is annotated. However, the dataset require some documentation work and we have signed the data agreement to their email, and we cannot guarantee they will reply.
 	\end{itemize}
+To illustrate the dataset, the github repository \footnote{https://github.com/JunMa11/COVID-19-CT-Seg-Benchmark} visualized the mask, and fig \ref{fig:visualize} is a screenshot from the webpage.
+\begin{figure}
+\centering
+\includegraphics[width = 0.8\textwidth]{img/dataset_visualize.png}
+\caption{Dataset visualization}
+\label{fig:visualize}
+\end{figure}
+
 \section{Data Processing and preprocessing}
 All the dataset we have collected so far are stored as NIFTI Format. We found SimpleITK\footnote{https://simpleitk.org/} is widely used in the medical application. The data was read in as itk image with SimpleITK tool. Figure \ref{fig:original} and \ref{fig:padded} showes the original and padded volumes.
 \subsubsection*{Padding}
 We decided to train a 3D network as baseline and the COVID-19 Lung scan we have are in different shape. Specifically 10 higher resolution images with 512 * 512 * 134 and 10 lower resolution images with 630 * 630 * 14. And usually medical data volume is not usually a cube, we first implemented a network that can pad any volume with edge padding into a desirable shape.
 %TODO insert image here
+
 \begin{figure}
 \centering
 \includegraphics[width = 0.8\textwidth]{img/Original_ct.png}
@@ -24,6 +33,7 @@ We decided to train a 3D network as baseline and the COVID-19 Lung scan we have 
 \caption{Padded CT into Cube}
 \label{fig:padded}
 \end{figure}
+
 
 \subsubsection*{Augmentation through physical transformation}
 Follow the suggestion in paper \cite{zhang_when_2019}, we performed augmentation on 3D images using the physical transformation such as random scale rotation. We are still improving our eclastic transformation. Figure \ref{fig:rotation} and \ref{fig:eclastic} shows the original and padded volumes.
