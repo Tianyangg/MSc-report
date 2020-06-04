@@ -1,7 +1,7 @@
 
 \section{Data augmentation}
 In medical domain, huge dataset consists of large numbers of carefully labelled samples is rarely available due to heavy workload for annotations, rarity of disease, ethic issues of data acquire process and data privacy. Furthermore, different data acquire protocols (i.e. CT machines used by different hospitals) brings difficulties to clinical practice for good accuracy of existing pre-trained models. As a result, few shot learning and/or few shot segmentation has been explored in recent years. 
-In this section, we focus on a few approaches that has been used in current literature which aim to explore the potential of existing training samples through various augmentation methods to alleviate the insufficient training samples in medical imaging. We discuss data augmentation method as well as the amount of data used in each work. Table \ref{} provide an overview of each method.
+In this section, we focus on a few approaches that has been used in current literature which aim to explore the potential of existing training samples through various augmentation methods to alleviate the insufficient training samples in medical imaging. We discuss data augmentation method as well as the amount of data used in each work. Table \ref{tab:Augtable} provide an overview of each method.
 
 \subsection{Traditional Data Augmentation}
 Traditional Data augmentation method in imaging domain refers to the process that does not require such training data to learn a transformation.\\
@@ -20,10 +20,11 @@ We cannot guarantee the effectiveness of this augmentation method due to the dom
 \subsection{Learning for augmentation}
 Following the traditional augmentation methods, we here want to discuss a few medical image augmentation based on deep learning. Specifically we focus on those who used one or a few data during the augmentation which is close to the problem we are facing.\\
 
+%TODO citation in adversarial defense
 Adversarial defense was deployed in \cite{suk_brain_2019} for the augmentation of small samples in Brain MR segmentation. Adversarial samples generated though Fast Gradient Sign Method\cite{} and then added as training data to improve the robustness, which according the study in \cite{} without decreasing the performance. So far we believe this method worth trying because the experiment was trained on 7 brain volumes, which is close to our task.\\
 
 
-
+\begin{table}
 \begin{tabular}{lllll}
 \hline
 Paper                                             & Method                        & Dataset              & Number of samples &  \\
@@ -31,10 +32,14 @@ Paper                                             & Method                      
 \cite{zhang_when_2019}       & Stacked traditional transform & Prostate dataset     & 48 4D volumes     &  \\
 \cite{zhang_mixup_2018}       & mixup                         & CIFAR 10             & Huge              &  \\
 \cite{panfilov_improving_2019} & mixup                         & Knee MR images       & 88 3D MRI         &  \\
-\cite{li_overfitting_2019}   & Asymmetric mixup              & BraTS ?              &                   &  \\
+\cite{li_overfitting_2019}   & Asymmetric mixup              & BraTS               &  not specified             &  \\
 \cite{suk_brain_2019}                    & Adversarial defense           & MRBrainS18 challenge & 7 train, 14 test  &  \\
 \hline
 \end{tabular}
+\caption{Data Augmentation methods}
+\label{tab:Augtable}
+\end{table}
+
 
 
 
@@ -66,13 +71,14 @@ People tend to choose datasets from closer domain for transfer learning. It is r
 Recent work explored several across disease transfer learning training techniques under MRI domain \cite{wang_improving_2019}. The paper evaluated three transfer learning methods trained on 3D U-Net by Fine tuning the last three layers, Fine tuning the decoder and Fine tuning all model parameters. 
 The Source Dataset: Multiple Sclerosis Dataset consists 3630 MRI volumes and used Brain Tumor Dataset as Target dataset including 210 high-grade glioma (HGG) and 75 low-grade glioma (LGG) Brain MRI scans. The training target is a decaying weighted categorical cross entropy loss weighted by relative voxel. Their best validation performance of pre-trained network achieved validation performance AUC 0.77. Experiment result on 20, 50, 100 and 150 samples during Fine tuning respectively showed that Fine tuning all parameters out performed the rest methods in most cases.\\
 
-One potential drawback is that compared to the our task, the target training set is relatively larger, the performance is expected to be less ideal when using "fine tune all" method using 4 or less volumes in our case.\\
+One potential drawback is that compared to the our task, the target training set is relatively larger, the performance is expected to be less ideal when using "fine tune all" method using 4 or less volumes in our case.
+
+\subsection{Special network design}
+Transfer learning methods usually require small samples to update millions of parameters that take the risk of overfitting \cite{shaban_one-shot_2017}. The design of multiple branch network, usually includes conditioner arm and segmentation arms inspired the deep learning in medical domain to go beyond transfer learning while encourage a stronger between-arms interaction to compensate the lacking in pre-trained model \cite{roy_squeeze_2019}. The proposed method perform 3D volume segmentation at test time while use 2D images during training. However the method requires start and end slice to be indicated for each query volume and still not achieving good dice score.\\
 
 Paper \cite{suk_brain_2019} trained segmentation of Brain MR image on 7 brain volumes after Adversarial defense augmentation. The work first split the segmentation from easy to hard into 2 individual classifiers then joint learning with dense pixel segmentation. The author reported that the result outperformed Unet and Vnet method trained from scratch. We argue that the augmentation provide good result in the segmentation accuracy while the segmentation part is not well explained in the paper. We have emailed the author for further details.
 
-\subsection{Special network design}
-Transfer learning methods usually require small samples to update millions of parameters that take the risk of overfitting \cite{shaban_one-shot_2017}. The design of multiple branch network, usually includes conditioner arm and segmentation arms inspired the deep learning in medical domain to go beyond transfer learning while encourage a stronger between-arms interaction to compensate the lacking in pre-trained model \cite{roy_squeeze_2019}. The proposed method perform 3D volume segmentation at test time while use 2D images during training. However the method requires start and end slice to be indicated for each query volume and still not achieving good dice score.
-
+% TODO change citatino in table header
 \begin{table}
 \begin{tabular}{p{1cm} p{5cm} p{4cm} p{4cm}}
 \hline
