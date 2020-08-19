@@ -1,0 +1,29 @@
+\section{Motivation}
+
+\section{Bullshit}
+
+\section{Summarization of out work}
+{\color{red} In this project, we dealt with two common scenario in medical imaging on segmentation task: (1)only a small set of labelled samples are collected, and (2) a small set of labelled data is available and in addition, a relatively larger amounts of data is collected but not labelled.\\
+
+ For case 1, we explored transfer learning using different pretraining method or available pretrained models. We also tried to understand the network behaviour during transfer learning.\\
+ \begin{enumerate}
+ 	\item First, we pretrained the model on non-Covid Lung volumes to get a pretrained model $F_{pretrained}$, and we also obtained the available pretrained model of Model Genesis \cite{zhou_models_2019}.
+ 	\item Then we perfrom transfer learning using Covid dataset on the two pretrained model weights.
+ 	\item We analyzed the results using SVCCA tool to get a further understanding of the Fine-tuned model. 
+ \end{enumerate}
+ 
+ For case 2, we further explored the semi-supervise learning under this typical semisupervise setup. For psuedo labeling, we proposed a method that assign the segmentation label using cosine similarity score from the labelled datset. 
+ 
+ \begin{enumerate}
+ 	\item First, given a pretrained model A, we fine-tune to get A' on the small set of Covid dataset until the model gives relatively good performance (e.g Dice coefficient over 0.75).
+ 	\item Next, we random crop 120 68 * 68 patches $P_{img}$ from the labelled datset and store the labels $P_{label}$. We randomly crop 32 68 * 68 slices from each volume of the unlabelled dataset.
+ 	\item Then, we take the encoder part of A'. Given an unlabelled patch $p_{unlabelled}$, we calculate its cosine similarity with each data in $P_{img}$ in the encoded latent space and get the top two most similar labels $P_{label_{i}}, P_{label_{j}}$ with similarity score $S_{i}, S_{j}$. We assign the mask with the weighted combinatino of the labels to the unlablled image \textbf{Only if both the similarity score is larger than 0.90}.
+ 	\item We treated those fake labels in step 3 as 'soft-mask'. We made a copy of A' as $A'_{copy}$ as the student network and trained using the same way as mean-teacher training skeme.
+ 	\item We obtained an improvement of ??? percent compared with the transfer learning method. 
+ 	\end{enumerate}
+ }
+ 
+\newpage 
+
+\section{Outline of this report}
+

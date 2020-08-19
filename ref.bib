@@ -1,255 +1,44 @@
+@book{Goodfellow-et-al-2016,
+    title={Deep Learning},
+    author={Ian Goodfellow and Yoshua Bengio and Aaron Courville},
+    publisher={MIT Press},
+    note={\url{http://www.deeplearningbook.org}},
+    year={2016}
+}
 
-@article{goodfellow_explaining_2015,
-	title = {Explaining and Harnessing Adversarial Examples},
-	url = {http://arxiv.org/abs/1412.6572},
-	abstract = {Several machine learning models, including neural networks, consistently misclassify adversarial examples—inputs formed by applying small but intentionally worst-case perturbations to examples from the dataset, such that the perturbed input results in the model outputting an incorrect answer with high conﬁdence. Early attempts at explaining this phenomenon focused on nonlinearity and overﬁtting. We argue instead that the primary cause of neural networks’ vulnerability to adversarial perturbation is their linear nature. This explanation is supported by new quantitative results while giving the ﬁrst explanation of the most intriguing fact about them: their generalization across architectures and training sets. Moreover, this view yields a simple and fast method of generating adversarial examples. Using this approach to provide examples for adversarial training, we reduce the test set error of a maxout network on the {MNIST} dataset.},
-	journaltitle = {{arXiv}:1412.6572 [cs, stat]},
-	author = {Goodfellow, Ian J. and Shlens, Jonathon and Szegedy, Christian},
-	urldate = {2020-06-04},
-	date = {2015-03-20},
+
+@article{raghu_svcca_2017,
+	title = {{SVCCA}: Singular Vector Canonical Correlation Analysis for Deep Learning Dynamics and Interpretability},
+	url = {http://arxiv.org/abs/1706.05806},
+	shorttitle = {{SVCCA}},
+	abstract = {We propose a new technique, Singular Vector Canonical Correlation Analysis ({SVCCA}), a tool for quickly comparing two representations in a way that is both invariant to afﬁne transform (allowing comparison between different layers and networks) and fast to compute (allowing more comparisons to be calculated than with previous methods). We deploy this tool to measure the intrinsic dimensionality of layers, showing in some cases needless over-parameterization; to probe learning dynamics throughout training, ﬁnding that networks converge to ﬁnal representations from the bottom up; to show where class-speciﬁc information in networks is formed; and to suggest new training regimes that simultaneously save computation and overﬁt less.},
+	journaltitle = {{arXiv}:1706.05806 [cs, stat]},
+	author = {Raghu, Maithra and Gilmer, Justin and Yosinski, Jason and Sohl-Dickstein, Jascha},
+	urldate = {2020-08-16},
+	date = {2017-11-08},
 	langid = {english},
 	eprinttype = {arxiv},
-	eprint = {1412.6572},
+	eprint = {1706.05806},
 	keywords = {Computer Science - Machine Learning, Statistics - Machine Learning},
-	file = {Explaining and Harnessing Adversarial Examples.pdf:/Users/tianyangsun/Desktop/Paper archive/Explaining and Harnessing Adversarial Examples.pdf:application/pdf}
+	file = {SVCCA.pdf:/Users/tianyangsun/Desktop/Project/Paper archive/SVCCA.pdf:application/pdf}
+}
 
-@article{ma_segmentation_2020,
-	title = {Segmentation Loss Odyssey},
-	url = {http://arxiv.org/abs/2005.13449},
-	abstract = {Loss functions are one of the crucial ingredients in deep learning-based medical image segmentation methods. Many loss functions have been proposed in existing literature, but are studied separately or only investigated with few other losses. In this paper, we present a systematic taxonomy to sort existing loss functions into four meaningful categories. This helps to reveal links and fundamental similarities between them. Moreover, we explore the relationship between the traditional region-based and the more recent boundary-based loss functions. The {PyTorch} implementations of these loss functions are publicly available at https://github.com/{JunMa}11/{SegLoss}.},
-	journaltitle = {{arXiv}:2005.13449 [cs, eess]},
-	author = {Ma, Jun},
-	urldate = {2020-06-02},
-	date = {2020-05-27},
+@article{raghu_transfusion_2019,
+	title = {Transfusion: Understanding Transfer Learning for Medical Imaging},
+	url = {http://arxiv.org/abs/1902.07208},
+	shorttitle = {Transfusion},
+	abstract = {Transfer learning from natural image datasets, particularly I N , using standard large models and corresponding pretrained weights has become a de-facto method for deep learning applications to medical imaging. However, there are fundamental di erences in data sizes, features and task speci cations between natural image classi cation and the target medical tasks, and there is little understanding of the e ects of transfer. In this paper, we explore properties of transfer learning for medical imaging. A performance evaluation on two large scale medical imaging tasks shows that surprisingly, transfer o ers little bene t to performance, and simple, lightweight models can perform comparably to I N architectures. Investigating the learned representations and features, we nd that some of the di erences from transfer learning are due to the over-parametrization of standard models rather than sophisticated feature reuse. We isolate where useful feature reuse occurs, and outline the implications for more e cient model exploration. We also explore feature independent bene ts of transfer arising from weight scalings.},
+	journaltitle = {{arXiv}:1902.07208 [cs, stat]},
+	author = {Raghu, Maithra and Zhang, Chiyuan and Kleinberg, Jon and Bengio, Samy},
+	urldate = {2020-08-16},
+	date = {2019-10-29},
 	langid = {english},
 	eprinttype = {arxiv},
-	eprint = {2005.13449},
-	keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning, Electrical Engineering and Systems Science - Image and Video Processing},
-	file = {Loss function odyssay.pdf:/Users/tianyangsun/Desktop/Paper archive/Loss function odyssay.pdf:application/pdf}
+	eprint = {1902.07208},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning, Statistics - Machine Learning},
+	file = {Transfusion\: Understanding Transfer Learning for Medical Imaging.pdf:/Users/tianyangsun/Desktop/Project/Paper archive/Transfusion\: Understanding Transfer Learning for Medical Imaging.pdf:application/pdf}
 }
 
-@incollection{ourselin_3d_2016,
-	location = {Cham},
-	title = {3D U-Net: Learning Dense Volumetric Segmentation from Sparse Annotation},
-	volume = {9901},
-	isbn = {978-3-319-46722-1 978-3-319-46723-8},
-	url = {http://link.springer.com/10.1007/978-3-319-46723-8_49},
-	shorttitle = {3D U-Net},
-	abstract = {This paper introduces a network for volumetric segmentation that learns from sparsely annotated volumetric images. We outline two attractive use cases of this method: (1) In a semi-automated setup, the user annotates some slices in the volume to be segmented. The network learns from these sparse annotations and provides a dense 3D segmentation. (2) In a fully-automated setup, we assume that a representative, sparsely annotated training set exists. Trained on this data set, the network densely segments new volumetric images. The proposed network extends the previous u-net architecture from Ronneberger et al. by replacing all 2D operations with their 3D counterparts. The implementation performs on-the-ﬂy elastic deformations for eﬃcient data augmentation during training. It is trained end-to-end from scratch, i.e., no pre-trained network is required. We test the performance of the proposed method on a complex, highly variable 3D structure, the Xenopus kidney, and achieve good results for both use cases.},
-	pages = {424--432},
-	booktitle = {Medical Image Computing and Computer-Assisted Intervention – {MICCAI} 2016},
-	publisher = {Springer International Publishing},
-	author = {Çiçek, Özgün and Abdulkadir, Ahmed and Lienkamp, Soeren S. and Brox, Thomas and Ronneberger, Olaf},
-	editor = {Ourselin, Sebastien and Joskowicz, Leo and Sabuncu, Mert R. and Unal, Gozde and Wells, William},
-	urldate = {2020-05-29},
-	date = {2016},
-	langid = {english},
-	doi = {10.1007/978-3-319-46723-8_49},
-	note = {Series Title: Lecture Notes in Computer Science},
-	file = {3D-UNet.pdf:/Users/tianyangsun/Desktop/Paper archive/Unet and friends/3D-UNet.pdf:application/pdf}
-}
-
-@article{oktay_attention_2018,
-	title = {Attention U-Net: Learning Where to Look for the Pancreas},
-	url = {http://arxiv.org/abs/1804.03999},
-	shorttitle = {Attention U-Net},
-	abstract = {We propose a novel attention gate ({AG}) model for medical imaging that automatically learns to focus on target structures of varying shapes and sizes. Models trained with {AGs} implicitly learn to suppress irrelevant regions in an input image while highlighting salient features useful for a speciﬁc task. This enables us to eliminate the necessity of using explicit external tissue/organ localisation modules of cascaded convolutional neural networks ({CNNs}). {AGs} can be easily integrated into standard {CNN} architectures such as the U-Net model with minimal computational overhead while increasing the model sensitivity and prediction accuracy. The proposed Attention U-Net architecture is evaluated on two large {CT} abdominal datasets for multi-class image segmentation. Experimental results show that {AGs} consistently improve the prediction performance of U-Net across different datasets and training sizes while preserving computational efﬁciency. The source code for the proposed architecture is publicly available.},
-	journaltitle = {{arXiv}:1804.03999 [cs]},
-	author = {Oktay, Ozan and Schlemper, Jo and Folgoc, Loic Le and Lee, Matthew and Heinrich, Mattias and Misawa, Kazunari and Mori, Kensaku and {McDonagh}, Steven and Hammerla, Nils Y. and Kainz, Bernhard and Glocker, Ben and Rueckert, Daniel},
-	urldate = {2020-05-29},
-	date = {2018-05-20},
-	langid = {english},
-	eprinttype = {arxiv},
-	eprint = {1804.03999},
-	keywords = {Computer Science - Computer Vision and Pattern Recognition},
-	file = {Attention Unet.pdf:/Users/tianyangsun/Desktop/Paper archive/Unet and friends/Attention Unet.pdf:application/pdf}
-}
-
-@article{ronneberger_u-net_2015,
-	title = {U-Net: Convolutional Networks for Biomedical Image Segmentation},
-	url = {http://arxiv.org/abs/1505.04597},
-	shorttitle = {U-Net},
-	abstract = {There is large consent that successful training of deep networks requires many thousand annotated training samples. In this paper, we present a network and training strategy that relies on the strong use of data augmentation to use the available annotated samples more eﬃciently. The architecture consists of a contracting path to capture context and a symmetric expanding path that enables precise localization. We show that such a network can be trained end-to-end from very few images and outperforms the prior best method (a sliding-window convolutional network) on the {ISBI} challenge for segmentation of neuronal structures in electron microscopic stacks. Using the same network trained on transmitted light microscopy images (phase contrast and {DIC}) we won the {ISBI} cell tracking challenge 2015 in these categories by a large margin. Moreover, the network is fast. Segmentation of a 512x512 image takes less than a second on a recent {GPU}. The full implementation (based on Caﬀe) and the trained networks are available at http://lmb.informatik.uni-freiburg.de/people/ronneber/u-net.},
-	journaltitle = {{arXiv}:1505.04597 [cs]},
-	author = {Ronneberger, Olaf and Fischer, Philipp and Brox, Thomas},
-	urldate = {2020-05-29},
-	date = {2015-05-18},
-	langid = {english},
-	eprinttype = {arxiv},
-	eprint = {1505.04597},
-	keywords = {Computer Science - Computer Vision and Pattern Recognition},
-	file = {Unet.pdf:/Users/tianyangsun/Desktop/Paper archive/Unet and friends/Unet.pdf:application/pdf}
-}
-
-@incollection{stoyanov_unet_2018,
-	location = {Cham},
-	title = {{UNet}++: A Nested U-Net Architecture for Medical Image Segmentation},
-	volume = {11045},
-	isbn = {978-3-030-00888-8 978-3-030-00889-5},
-	url = {http://link.springer.com/10.1007/978-3-030-00889-5_1},
-	shorttitle = {{UNet}++},
-	abstract = {In this paper, we present {UNet}++, a new, more powerful architecture for medical image segmentation. Our architecture is essentially a deeply-supervised encoder-decoder network where the encoder and decoder sub-networks are connected through a series of nested, dense skip pathways. The re-designed skip pathways aim at reducing the semantic gap between the feature maps of the encoder and decoder sub-networks. We argue that the optimizer would deal with an easier learning task when the feature maps from the decoder and encoder networks are semantically similar. We have evaluated {UNet}++ in comparison with U-Net and wide U-Net architectures across multiple medical image segmentation tasks: nodule segmentation in the low-dose {CT} scans of chest, nuclei segmentation in the microscopy images, liver segmentation in abdominal {CT} scans, and polyp segmentation in colonoscopy videos. Our experiments demonstrate that {UNet}++ with deep supervision achieves an average {IoU} gain of 3.9 and 3.4 points over U-Net and wide U-Net, respectively.},
-	pages = {3--11},
-	booktitle = {Deep Learning in Medical Image Analysis and Multimodal Learning for Clinical Decision Support},
-	publisher = {Springer International Publishing},
-	author = {Zhou, Zongwei and Rahman Siddiquee, Md Mahfuzur and Tajbakhsh, Nima and Liang, Jianming},
-	editor = {Stoyanov, Danail and Taylor, Zeike and Carneiro, Gustavo and Syeda-Mahmood, Tanveer and Martel, Anne and Maier-Hein, Lena and Tavares, João Manuel R.S. and Bradley, Andrew and Papa, João Paulo and Belagiannis, Vasileios and Nascimento, Jacinto C. and Lu, Zhi and Conjeti, Sailesh and Moradi, Mehdi and Greenspan, Hayit and Madabhushi, Anant},
-	urldate = {2020-05-29},
-	date = {2018},
-	langid = {english},
-	doi = {10.1007/978-3-030-00889-5_1},
-	note = {Series Title: Lecture Notes in Computer Science},
-	file = {Unet++.pdf:/Users/tianyangsun/Desktop/Paper archive/Unet and friends/Unet++.pdf:application/pdf}
-}
-
-@article{milletari_v-net_2016,
-	title = {V-Net: Fully Convolutional Neural Networks for Volumetric Medical Image Segmentation},
-	url = {http://arxiv.org/abs/1606.04797},
-	shorttitle = {V-Net},
-	abstract = {Convolutional Neural Networks ({CNNs}) have been recently employed to solve problems from both the computer vision and medical image analysis ﬁelds. Despite their popularity, most approaches are only able to process 2D images while most medical data used in clinical practice consists of 3D volumes. In this work we propose an approach to 3D image segmentation based on a volumetric, fully convolutional, neural network. Our {CNN} is trained end-to-end on {MRI} volumes depicting prostate, and learns to predict segmentation for the whole volume at once. We introduce a novel objective function, that we optimise during training, based on Dice coeﬃcient. In this way we can deal with situations where there is a strong imbalance between the number of foreground and background voxels. To cope with the limited number of annotated volumes available for training, we augment the data applying random non-linear transformations and histogram matching. We show in our experimental evaluation that our approach achieves good performances on challenging test data while requiring only a fraction of the processing time needed by other previous methods.},
-	journaltitle = {{arXiv}:1606.04797 [cs]},
-	author = {Milletari, Fausto and Navab, Nassir and Ahmadi, Seyed-Ahmad},
-	urldate = {2020-05-29},
-	date = {2016-06-15},
-	langid = {english},
-	eprinttype = {arxiv},
-	eprint = {1606.04797},
-	keywords = {Computer Science - Computer Vision and Pattern Recognition},
-	file = {Vnet.pdf:/Users/tianyangsun/Desktop/Paper archive/Unet and friends/Vnet.pdf:application/pdf}
-}
-
-@article{shi_review_2020,
-	title = {Review of Artificial Intelligence Techniques in Imaging Data Acquisition, Segmentation and Diagnosis for {COVID}-19},
-	issn = {1937-3333, 1941-1189},
-	url = {https://ieeexplore.ieee.org/document/9069255/},
-	doi = {10.1109/RBME.2020.2987975},
-	pages = {1--1},
-	journaltitle = {{IEEE} Reviews in Biomedical Engineering},
-	shortjournal = {{IEEE} Rev. Biomed. Eng.},
-	author = {Shi, Feng and Wang, Jun and Shi, Jun and Wu, Ziyan and Wang, Qian and Tang, Zhenyu and He, Kelei and Shi, Yinghuan and Shen, Dinggang},
-	urldate = {2020-05-29},
-	date = {2020},
-	langid = {english},
-	file = {Review of Artificial Intelligence Techniques in Imaging Data Acquisition, Segmentation and Diagnosis for COVID-19.pdf:/Users/tianyangsun/Desktop/Paper archive/Review of Artificial Intelligence Techniques in Imaging Data Acquisition, Segmentation and Diagnosis for COVID-19.pdf:application/pdf}
-}
-
-@article{COVID-19-SegBenchmark,
-  title={Towards Efficient COVID-19 CT Annotation: A Benchmark for Lung and Infection Segmentation},
-  author={Ma Jun and Wang Yixin and An Xingle and Ge Cheng and Yu Ziqi and Chen Jianan and Zhu Qiongjie and Dong Guoqiang and He Jian and He Zhiqiang and Ni Ziwei and Yang Xiaoping},
-  journal={arXiv preprint arXiv:2004.12537},
-  year={2020}
-}
-
-@dataset{COVID-19-CT-Seg-Dataset,
-  author       = {Ma Jun and
-                  Ge Cheng and
-                  Wang Yixin and
-                  An Xingle and
-                  Gao Jiantao and
-                  Yu Ziqi and
-                  Zhang Minqing and
-                  Liu Xin and
-                  Deng Xueyuan and
-                  Cao Shucheng and
-                  Wei Hao and
-                  Mei Sen and
-                  Yang Xiaoyu and
-                  Nie Ziwei and
-                  Li Chen and
-                  Tian Lu and
-                  Zhu Yuntao and
-                  Zhu Qiongjie and
-                  Dong Guoqiang and
-                  He Jian},
-  title        = {{COVID-19 CT Lung and Infection Segmentation 
-                   Dataset}},
-  month        = Apr,
-  year         = 2020,
-  publisher    = {Zenodo},
-  version      = {1.0},
-  doi          = {10.5281/zenodo.3757476},
-  url          = {https://doi.org/10.5281/zenodo.3757476}
-}
-
-@incollection{suk_brain_2019,
-	location = {Cham},
-	title = {Brain {MR} Image Segmentation in Small Dataset with Adversarial Defense and Task Reorganization},
-	volume = {11861},
-	isbn = {978-3-030-32691-3 978-3-030-32692-0},
-	url = {http://link.springer.com/10.1007/978-3-030-32692-0_1},
-	abstract = {Medical image segmentation is challenging especially in dealing with small dataset of 3D {MR} images. Encoding the variation of brain anatomical structures from individual subjects cannot be easily achieved, which is further challenged by only a limited number of well labeled subjects for training. In this study, we aim to address the issue of brain {MR} image segmentation in small dataset. First, concerning the limited number of training images, we adopt adversarial defense to augment the training data and therefore increase the robustness of the network. Second, inspired by the prior knowledge of neural anatomies, we reorganize the segmentation tasks of different regions into several groups in a hierarchical way. Third, the task reorganization extends to the semantic level, as we incorporate an additional object-level classification task to contribute highorder visual features toward the pixel-level segmentation task. In experiments we validate our method by segmenting gray matter, white matter, and several major regions on a challenge dataset. The proposed method with only seven subjects for training can achieve 84.46\% of Dice score in the onsite test set.},
-	pages = {1--8},
-	booktitle = {Machine Learning in Medical Imaging},
-	publisher = {Springer International Publishing},
-	author = {Ren, Xuhua and Zhang, Lichi and Wei, Dongming and Shen, Dinggang and Wang, Qian},
-	editor = {Suk, Heung-Il and Liu, Mingxia and Yan, Pingkun and Lian, Chunfeng},
-	urldate = {2020-05-28},
-	date = {2019},
-	langid = {english},
-	doi = {10.1007/978-3-030-32692-0_1},
-	note = {Series Title: Lecture Notes in Computer Science},
-	file = {Brain MR Image Segmentation in Small Dataset with Adversarial Defense and Task Reorganization.pdf:/Users/tianyangsun/Desktop/Paper archive/Brain MR Image Segmentation in Small Dataset with Adversarial Defense and Task Reorganization.pdf:application/pdf}
-}
-
-@article{roy_squeeze_2019,
-	title = {'Squeeze \& Excite' Guided Few-Shot Segmentation of Volumetric Images},
-	url = {http://arxiv.org/abs/1902.01314},
-	abstract = {Deep neural networks enable highly accurate image segmentation, but require large amounts of manually annotated data for supervised training. Few-shot learning aims to address this shortcoming by learning a new class from a few annotated support examples. We introduce, a novel few-shot framework, for the segmentation of volumetric medical images with only a few annotated slices. Compared to other related works in computer vision, the major challenges are the absence of pre-trained networks and the volumetric nature of medical scans. We address these challenges by proposing a new architecture for few-shot segmentation that incorporates ‘squeeze \& excite’ blocks. Our two-armed architecture consists of a conditioner arm, which processes the annotated support input and generates a task-speciﬁc representation. This representation is passed on to the segmenter arm that uses this information to segment the new query image. To facilitate eﬃcient interaction between the conditioner and the segmenter arm, we propose to use ‘channel squeeze \& spatial excitation’ blocks – a light-weight computational module – that enables heavy interaction between both the arms with negligible increase in model complexity. This contribution allows us to perform image segmentation without relying on a pre-trained model, which generally is unavailable for medical scans. Furthermore, we propose an eﬃcient strategy for volumetric segmentation by optimally pairing a few slices of the support volume to all the slices of the query volume. We perform experiments for organ segmentation on whole-body contrast-enhanced {CT} scans from the Visceral Dataset. Our proposed model outperforms multiple baselines and existing approaches with respect to the segmentation accuracy by a signiﬁcant margin. The source code is available at https://github.com/abhi4ssj/few-shot-segmentation.},
-	journaltitle = {{arXiv}:1902.01314 [cs]},
-	author = {Roy, Abhijit Guha and Siddiqui, Shayan and Pölsterl, Sebastian and Navab, Nassir and Wachinger, Christian},
-	urldate = {2020-05-28},
-	date = {2019-10-11},
-	langid = {english},
-	eprinttype = {arxiv},
-	eprint = {1902.01314},
-	keywords = {Computer Science - Computer Vision and Pattern Recognition},
-	file = {‘Squeeze & Excite’ Guided Few-Shot Segmentation of Volumetric Images.pdf:/Users/tianyangsun/Desktop/Paper archive/‘Squeeze & Excite’ Guided Few-Shot Segmentation of Volumetric Images.pdf:application/pdf}
-}
-
-@inproceedings{shaban_one-shot_2017,
-	location = {London, {UK}},
-	title = {One-Shot Learning for Semantic Segmentation},
-	isbn = {978-1-901725-60-5},
-	url = {http://www.bmva.org/bmvc/2017/papers/paper167/index.html},
-	doi = {10.5244/C.31.167},
-	abstract = {Low-shot learning methods for image classiﬁcation support learning from sparse data. We extend these techniques to support dense semantic image segmentation. Speciﬁcally, we train a network that, given a small set of annotated images, produces parameters for a Fully Convolutional Network ({FCN}). We use this {FCN} to perform dense pixel-level prediction on a test image for the new semantic class. Our architecture shows a 25\% relative {meanIoU} improvement compared to the best baseline methods for one-shot segmentation on unseen classes in the {PASCAL} {VOC} 2012 dataset and is at least 3× faster.},
-	eventtitle = {British Machine Vision Conference 2017},
-	pages = {167},
-	booktitle = {Procedings of the British Machine Vision Conference 2017},
-	publisher = {British Machine Vision Association},
-	author = {Shaban, Amirreza and Bansal, Shray and Liu, Zhen and Essa, Irfan and Boots, Byron},
-	urldate = {2020-05-27},
-	date = {2017},
-	langid = {english},
-	file = {One-Shot Learning for Semantic Segmentation.pdf:/Users/tianyangsun/Desktop/Paper archive/One-Shot Learning for Semantic Segmentation.pdf:application/pdf}
-}
-
-@article{rakelly_few-shot_nodate,
-	title = {Few-Shot Segmentation Propagation with Guided Networks},
-	abstract = {Learning-based methods for visual segmentation have made progress on particular types of segmentation tasks, but are limited by the necessary supervision, the narrow deﬁnitions of ﬁxed tasks, and the lack of control during inference for correcting errors. To remedy the rigidity and annotation burden of standard approaches, we address the problem of few-shot segmentation: given few image and few pixel supervision, segment any images accordingly. We propose guided networks, which extract a latent task representation from any amount of supervision, and optimize our architecture end-to-end for fast, accurate few-shot segmentation. Our method can switch tasks without further optimization and quickly update when given more guidance. We report the ﬁrst results for segmentation from one pixel per concept and show real-time interactive video segmentation. Our uniﬁed approach propagates pixel annotations across space for interactive segmentation, across time for video segmentation, and across scenes for semantic segmentation. Our guided segmentor is state-of-the-art in accuracy for the amount of annotation and time. See http://github.com/shelhamer/revolver for code, models, and more details.},
-	pages = {10},
-	author = {Rakelly, Kate and Shelhamer, Evan and Darrell, Trevor and Efros, Alexei and Levine, Sergey},
-	langid = {english},
-	file = {Few-Shot Segmentation Propagation with Guided Networks.pdf:/Users/tianyangsun/Desktop/Paper archive/Few-Shot Segmentation Propagation with Guided Networks.pdf:application/pdf}
-}
-
-@article{hussein_risk_2017,
-	title = {Risk Stratification of Lung Nodules Using 3D {CNN}-Based Multi-task Learning},
-	volume = {10265},
-	url = {http://arxiv.org/abs/1704.08797},
-	doi = {10.1007/978-3-319-59050-9_20},
-	abstract = {Risk stratiﬁcation of lung nodules is a task of primary importance in lung cancer diagnosis. Any improvement in robust and accurate nodule characterization can assist in identifying cancer stage, prognosis, and improving treatment planning. In this study, we propose a 3D Convolutional Neural Network ({CNN}) based nodule characterization strategy. With a completely 3D approach, we utilize the volumetric information from a {CT} scan which would be otherwise lost in the conventional 2D {CNN} based approaches. In order to address the need for a large amount for training data for {CNN}, we resort to transfer learning to obtain highly discriminative features. Moreover, we also acquire the task dependent feature representation for six high-level nodule attributes and fuse this complementary information via a Multi-task learning ({MTL}) framework. Finally, we propose to incorporate potential disagreement among radiologists while scoring diﬀerent nodule attributes in a graph regularized sparse multi-task learning. We evaluated our proposed approach on one of the largest publicly available lung nodule datasets comprising 1018 scans and obtained state-of-the-art results in regressing the malignancy scores.},
-	pages = {249--260},
-	journaltitle = {{arXiv}:1704.08797 [cs]},
-	author = {Hussein, Sarfaraz and Cao, Kunlin and Song, Qi and Bagci, Ulas},
-	urldate = {2020-05-27},
-	date = {2017},
-	langid = {english},
-	eprinttype = {arxiv},
-	eprint = {1704.08797},
-	keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning},
-	file = {Risk Stratification of Lung Nodules Using 3D CNN-Based Multi-task Learning.pdf:/Users/tianyangsun/Desktop/Paper archive/Risk Stratification of Lung Nodules Using 3D CNN-Based Multi-task Learning.pdf:application/pdf}
-}
 @article{wang_generalizing_2020,
 	title = {Generalizing from a Few Examples: A Survey on Few-Shot Learning},
 	url = {http://arxiv.org/abs/1904.05046},
@@ -411,6 +200,292 @@
 	langid = {english},
 	eprinttype = {arxiv},
 	eprint = {1907.10982},
-	keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning, Statistics - Machine Learning},
+	keywords = {Computer Science - Machine Learning, Statistics - Machine Learning, Computer Science - Computer Vision and Pattern Recognition},
 	file = {Overfitting of neural nets under class imbalance\: Analysis and improvements for segmentation .pdf:/Users/tianyangsun/Desktop/Paper archive/Overfitting of neural nets under class imbalance\: Analysis and improvements for segmentation .pdf:application/pdf}
+}
+
+@article{hussein_risk_2017,
+	title = {Risk Stratification of Lung Nodules Using 3D {CNN}-Based Multi-task Learning},
+	volume = {10265},
+	url = {http://arxiv.org/abs/1704.08797},
+	doi = {10.1007/978-3-319-59050-9_20},
+	abstract = {Risk stratiﬁcation of lung nodules is a task of primary importance in lung cancer diagnosis. Any improvement in robust and accurate nodule characterization can assist in identifying cancer stage, prognosis, and improving treatment planning. In this study, we propose a 3D Convolutional Neural Network ({CNN}) based nodule characterization strategy. With a completely 3D approach, we utilize the volumetric information from a {CT} scan which would be otherwise lost in the conventional 2D {CNN} based approaches. In order to address the need for a large amount for training data for {CNN}, we resort to transfer learning to obtain highly discriminative features. Moreover, we also acquire the task dependent feature representation for six high-level nodule attributes and fuse this complementary information via a Multi-task learning ({MTL}) framework. Finally, we propose to incorporate potential disagreement among radiologists while scoring diﬀerent nodule attributes in a graph regularized sparse multi-task learning. We evaluated our proposed approach on one of the largest publicly available lung nodule datasets comprising 1018 scans and obtained state-of-the-art results in regressing the malignancy scores.},
+	pages = {249--260},
+	journaltitle = {{arXiv}:1704.08797 [cs]},
+	author = {Hussein, Sarfaraz and Cao, Kunlin and Song, Qi and Bagci, Ulas},
+	urldate = {2020-05-27},
+	date = {2017},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {1704.08797},
+	keywords = {Computer Science - Machine Learning, Computer Science - Computer Vision and Pattern Recognition},
+	file = {Risk Stratification of Lung Nodules Using 3D CNN-Based Multi-task Learning.pdf:/Users/tianyangsun/Desktop/Paper archive/Risk Stratification of Lung Nodules Using 3D CNN-Based Multi-task Learning.pdf:application/pdf}
+}
+
+@inproceedings{shaban_one-shot_2017,
+	location = {London, {UK}},
+	title = {One-Shot Learning for Semantic Segmentation},
+	isbn = {978-1-901725-60-5},
+	url = {http://www.bmva.org/bmvc/2017/papers/paper167/index.html},
+	doi = {10.5244/C.31.167},
+	abstract = {Low-shot learning methods for image classiﬁcation support learning from sparse data. We extend these techniques to support dense semantic image segmentation. Speciﬁcally, we train a network that, given a small set of annotated images, produces parameters for a Fully Convolutional Network ({FCN}). We use this {FCN} to perform dense pixel-level prediction on a test image for the new semantic class. Our architecture shows a 25\% relative {meanIoU} improvement compared to the best baseline methods for one-shot segmentation on unseen classes in the {PASCAL} {VOC} 2012 dataset and is at least 3× faster.},
+	eventtitle = {British Machine Vision Conference 2017},
+	pages = {167},
+	booktitle = {Procedings of the British Machine Vision Conference 2017},
+	publisher = {British Machine Vision Association},
+	author = {Shaban, Amirreza and Bansal, Shray and Liu, Zhen and Essa, Irfan and Boots, Byron},
+	urldate = {2020-05-27},
+	date = {2017},
+	langid = {english},
+	file = {One-Shot Learning for Semantic Segmentation.pdf:/Users/tianyangsun/Desktop/Paper archive/One-Shot Learning for Semantic Segmentation.pdf:application/pdf}
+}
+
+@article{rakelly_few-shot_nodate,
+	title = {Few-Shot Segmentation Propagation with Guided Networks},
+	abstract = {Learning-based methods for visual segmentation have made progress on particular types of segmentation tasks, but are limited by the necessary supervision, the narrow deﬁnitions of ﬁxed tasks, and the lack of control during inference for correcting errors. To remedy the rigidity and annotation burden of standard approaches, we address the problem of few-shot segmentation: given few image and few pixel supervision, segment any images accordingly. We propose guided networks, which extract a latent task representation from any amount of supervision, and optimize our architecture end-to-end for fast, accurate few-shot segmentation. Our method can switch tasks without further optimization and quickly update when given more guidance. We report the ﬁrst results for segmentation from one pixel per concept and show real-time interactive video segmentation. Our uniﬁed approach propagates pixel annotations across space for interactive segmentation, across time for video segmentation, and across scenes for semantic segmentation. Our guided segmentor is state-of-the-art in accuracy for the amount of annotation and time. See http://github.com/shelhamer/revolver for code, models, and more details.},
+	pages = {10},
+	author = {Rakelly, Kate and Shelhamer, Evan and Darrell, Trevor and Efros, Alexei and Levine, Sergey},
+	langid = {english},
+	file = {Few-Shot Segmentation Propagation with Guided Networks.pdf:/Users/tianyangsun/Desktop/Paper archive/Few-Shot Segmentation Propagation with Guided Networks.pdf:application/pdf}
+}
+
+@article{roy_squeeze_2019,
+	title = {'Squeeze \& Excite' Guided Few-Shot Segmentation of Volumetric Images},
+	url = {http://arxiv.org/abs/1902.01314},
+	abstract = {Deep neural networks enable highly accurate image segmentation, but require large amounts of manually annotated data for supervised training. Few-shot learning aims to address this shortcoming by learning a new class from a few annotated support examples. We introduce, a novel few-shot framework, for the segmentation of volumetric medical images with only a few annotated slices. Compared to other related works in computer vision, the major challenges are the absence of pre-trained networks and the volumetric nature of medical scans. We address these challenges by proposing a new architecture for few-shot segmentation that incorporates ‘squeeze \& excite’ blocks. Our two-armed architecture consists of a conditioner arm, which processes the annotated support input and generates a task-speciﬁc representation. This representation is passed on to the segmenter arm that uses this information to segment the new query image. To facilitate eﬃcient interaction between the conditioner and the segmenter arm, we propose to use ‘channel squeeze \& spatial excitation’ blocks – a light-weight computational module – that enables heavy interaction between both the arms with negligible increase in model complexity. This contribution allows us to perform image segmentation without relying on a pre-trained model, which generally is unavailable for medical scans. Furthermore, we propose an eﬃcient strategy for volumetric segmentation by optimally pairing a few slices of the support volume to all the slices of the query volume. We perform experiments for organ segmentation on whole-body contrast-enhanced {CT} scans from the Visceral Dataset. Our proposed model outperforms multiple baselines and existing approaches with respect to the segmentation accuracy by a signiﬁcant margin. The source code is available at https://github.com/abhi4ssj/few-shot-segmentation.},
+	journaltitle = {{arXiv}:1902.01314 [cs]},
+	author = {Roy, Abhijit Guha and Siddiqui, Shayan and Pölsterl, Sebastian and Navab, Nassir and Wachinger, Christian},
+	urldate = {2020-05-28},
+	date = {2019-10-11},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {1902.01314},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition},
+	file = {‘Squeeze & Excite’ Guided Few-Shot Segmentation of Volumetric Images.pdf:/Users/tianyangsun/Desktop/Paper archive/‘Squeeze & Excite’ Guided Few-Shot Segmentation of Volumetric Images.pdf:application/pdf}
+}
+
+@incollection{suk_brain_2019,
+	location = {Cham},
+	title = {Brain {MR} Image Segmentation in Small Dataset with Adversarial Defense and Task Reorganization},
+	volume = {11861},
+	isbn = {978-3-030-32691-3 978-3-030-32692-0},
+	url = {http://link.springer.com/10.1007/978-3-030-32692-0_1},
+	abstract = {Medical image segmentation is challenging especially in dealing with small dataset of 3D {MR} images. Encoding the variation of brain anatomical structures from individual subjects cannot be easily achieved, which is further challenged by only a limited number of well labeled subjects for training. In this study, we aim to address the issue of brain {MR} image segmentation in small dataset. First, concerning the limited number of training images, we adopt adversarial defense to augment the training data and therefore increase the robustness of the network. Second, inspired by the prior knowledge of neural anatomies, we reorganize the segmentation tasks of different regions into several groups in a hierarchical way. Third, the task reorganization extends to the semantic level, as we incorporate an additional object-level classification task to contribute highorder visual features toward the pixel-level segmentation task. In experiments we validate our method by segmenting gray matter, white matter, and several major regions on a challenge dataset. The proposed method with only seven subjects for training can achieve 84.46\% of Dice score in the onsite test set.},
+	pages = {1--8},
+	booktitle = {Machine Learning in Medical Imaging},
+	publisher = {Springer International Publishing},
+	author = {Ren, Xuhua and Zhang, Lichi and Wei, Dongming and Shen, Dinggang and Wang, Qian},
+	editor = {Suk, Heung-Il and Liu, Mingxia and Yan, Pingkun and Lian, Chunfeng},
+	urldate = {2020-05-28},
+	date = {2019},
+	langid = {english},
+	doi = {10.1007/978-3-030-32692-0_1},
+	note = {Series Title: Lecture Notes in Computer Science},
+	file = {Brain MR Image Segmentation in Small Dataset with Adversarial Defense and Task Reorganization.pdf:/Users/tianyangsun/Desktop/Paper archive/Brain MR Image Segmentation in Small Dataset with Adversarial Defense and Task Reorganization.pdf:application/pdf}
+}
+
+@article{zhao_data_2019,
+	title = {Data augmentation using learned transformations for one-shot medical image segmentation},
+	url = {http://arxiv.org/abs/1902.09383},
+	abstract = {Image segmentation is an important task in many medical applications. Methods based on convolutional neural networks attain state-of-the-art accuracy; however, they typically rely on supervised training with large labeled datasets. Labeling medical images requires signiﬁcant expertise and time, and typical hand-tuned approaches for data augmentation fail to capture the complex variations in such images.},
+	journaltitle = {{arXiv}:1902.09383 [cs]},
+	author = {Zhao, Amy and Balakrishnan, Guha and Durand, Frédo and Guttag, John V. and Dalca, Adrian V.},
+	urldate = {2020-05-28},
+	date = {2019-04-06},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {1902.09383},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition},
+	file = {Data augmentation using learned transformations for one-shot medical image segmentation.pdf:/Users/tianyangsun/Desktop/Paper archive/Data augmentation using learned transformations for one-shot medical image segmentation.pdf:application/pdf}
+}
+
+@article{shi_review_2020,
+	title = {Review of Artificial Intelligence Techniques in Imaging Data Acquisition, Segmentation and Diagnosis for {COVID}-19},
+	issn = {1937-3333, 1941-1189},
+	url = {https://ieeexplore.ieee.org/document/9069255/},
+	doi = {10.1109/RBME.2020.2987975},
+	pages = {1--1},
+	journaltitle = {{IEEE} Reviews in Biomedical Engineering},
+	shortjournal = {{IEEE} Rev. Biomed. Eng.},
+	author = {Shi, Feng and Wang, Jun and Shi, Jun and Wu, Ziyan and Wang, Qian and Tang, Zhenyu and He, Kelei and Shi, Yinghuan and Shen, Dinggang},
+	urldate = {2020-05-29},
+	date = {2020},
+	langid = {english},
+	file = {Review of Artificial Intelligence Techniques in Imaging Data Acquisition, Segmentation and Diagnosis for COVID-19.pdf:/Users/tianyangsun/Desktop/Paper archive/Review of Artificial Intelligence Techniques in Imaging Data Acquisition, Segmentation and Diagnosis for COVID-19.pdf:application/pdf}
+}
+
+@incollection{ourselin_3d_2016,
+	location = {Cham},
+	title = {3D U-Net: Learning Dense Volumetric Segmentation from Sparse Annotation},
+	volume = {9901},
+	isbn = {978-3-319-46722-1 978-3-319-46723-8},
+	url = {http://link.springer.com/10.1007/978-3-319-46723-8_49},
+	shorttitle = {3D U-Net},
+	abstract = {This paper introduces a network for volumetric segmentation that learns from sparsely annotated volumetric images. We outline two attractive use cases of this method: (1) In a semi-automated setup, the user annotates some slices in the volume to be segmented. The network learns from these sparse annotations and provides a dense 3D segmentation. (2) In a fully-automated setup, we assume that a representative, sparsely annotated training set exists. Trained on this data set, the network densely segments new volumetric images. The proposed network extends the previous u-net architecture from Ronneberger et al. by replacing all 2D operations with their 3D counterparts. The implementation performs on-the-ﬂy elastic deformations for eﬃcient data augmentation during training. It is trained end-to-end from scratch, i.e., no pre-trained network is required. We test the performance of the proposed method on a complex, highly variable 3D structure, the Xenopus kidney, and achieve good results for both use cases.},
+	pages = {424--432},
+	booktitle = {Medical Image Computing and Computer-Assisted Intervention – {MICCAI} 2016},
+	publisher = {Springer International Publishing},
+	author = {Çiçek, Özgün and Abdulkadir, Ahmed and Lienkamp, Soeren S. and Brox, Thomas and Ronneberger, Olaf},
+	editor = {Ourselin, Sebastien and Joskowicz, Leo and Sabuncu, Mert R. and Unal, Gozde and Wells, William},
+	urldate = {2020-05-29},
+	date = {2016},
+	langid = {english},
+	doi = {10.1007/978-3-319-46723-8_49},
+	note = {Series Title: Lecture Notes in Computer Science},
+	file = {3D-UNet.pdf:/Users/tianyangsun/Desktop/Paper archive/Unet and friends/3D-UNet.pdf:application/pdf}
+}
+
+@article{oktay_attention_2018,
+	title = {Attention U-Net: Learning Where to Look for the Pancreas},
+	url = {http://arxiv.org/abs/1804.03999},
+	shorttitle = {Attention U-Net},
+	abstract = {We propose a novel attention gate ({AG}) model for medical imaging that automatically learns to focus on target structures of varying shapes and sizes. Models trained with {AGs} implicitly learn to suppress irrelevant regions in an input image while highlighting salient features useful for a speciﬁc task. This enables us to eliminate the necessity of using explicit external tissue/organ localisation modules of cascaded convolutional neural networks ({CNNs}). {AGs} can be easily integrated into standard {CNN} architectures such as the U-Net model with minimal computational overhead while increasing the model sensitivity and prediction accuracy. The proposed Attention U-Net architecture is evaluated on two large {CT} abdominal datasets for multi-class image segmentation. Experimental results show that {AGs} consistently improve the prediction performance of U-Net across different datasets and training sizes while preserving computational efﬁciency. The source code for the proposed architecture is publicly available.},
+	journaltitle = {{arXiv}:1804.03999 [cs]},
+	author = {Oktay, Ozan and Schlemper, Jo and Folgoc, Loic Le and Lee, Matthew and Heinrich, Mattias and Misawa, Kazunari and Mori, Kensaku and {McDonagh}, Steven and Hammerla, Nils Y. and Kainz, Bernhard and Glocker, Ben and Rueckert, Daniel},
+	urldate = {2020-05-29},
+	date = {2018-05-20},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {1804.03999},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition},
+	file = {Attention Unet.pdf:/Users/tianyangsun/Desktop/Paper archive/Unet and friends/Attention Unet.pdf:application/pdf}
+}
+
+@article{ronneberger_u-net_2015,
+	title = {U-Net: Convolutional Networks for Biomedical Image Segmentation},
+	url = {http://arxiv.org/abs/1505.04597},
+	shorttitle = {U-Net},
+	abstract = {There is large consent that successful training of deep networks requires many thousand annotated training samples. In this paper, we present a network and training strategy that relies on the strong use of data augmentation to use the available annotated samples more eﬃciently. The architecture consists of a contracting path to capture context and a symmetric expanding path that enables precise localization. We show that such a network can be trained end-to-end from very few images and outperforms the prior best method (a sliding-window convolutional network) on the {ISBI} challenge for segmentation of neuronal structures in electron microscopic stacks. Using the same network trained on transmitted light microscopy images (phase contrast and {DIC}) we won the {ISBI} cell tracking challenge 2015 in these categories by a large margin. Moreover, the network is fast. Segmentation of a 512x512 image takes less than a second on a recent {GPU}. The full implementation (based on Caﬀe) and the trained networks are available at http://lmb.informatik.uni-freiburg.de/people/ronneber/u-net.},
+	journaltitle = {{arXiv}:1505.04597 [cs]},
+	author = {Ronneberger, Olaf and Fischer, Philipp and Brox, Thomas},
+	urldate = {2020-05-29},
+	date = {2015-05-18},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {1505.04597},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition},
+	file = {Unet.pdf:/Users/tianyangsun/Desktop/Paper archive/Unet and friends/Unet.pdf:application/pdf}
+}
+
+@incollection{stoyanov_unet_2018,
+	location = {Cham},
+	title = {{UNet}++: A Nested U-Net Architecture for Medical Image Segmentation},
+	volume = {11045},
+	isbn = {978-3-030-00888-8 978-3-030-00889-5},
+	url = {http://link.springer.com/10.1007/978-3-030-00889-5_1},
+	shorttitle = {{UNet}++},
+	abstract = {In this paper, we present {UNet}++, a new, more powerful architecture for medical image segmentation. Our architecture is essentially a deeply-supervised encoder-decoder network where the encoder and decoder sub-networks are connected through a series of nested, dense skip pathways. The re-designed skip pathways aim at reducing the semantic gap between the feature maps of the encoder and decoder sub-networks. We argue that the optimizer would deal with an easier learning task when the feature maps from the decoder and encoder networks are semantically similar. We have evaluated {UNet}++ in comparison with U-Net and wide U-Net architectures across multiple medical image segmentation tasks: nodule segmentation in the low-dose {CT} scans of chest, nuclei segmentation in the microscopy images, liver segmentation in abdominal {CT} scans, and polyp segmentation in colonoscopy videos. Our experiments demonstrate that {UNet}++ with deep supervision achieves an average {IoU} gain of 3.9 and 3.4 points over U-Net and wide U-Net, respectively.},
+	pages = {3--11},
+	booktitle = {Deep Learning in Medical Image Analysis and Multimodal Learning for Clinical Decision Support},
+	publisher = {Springer International Publishing},
+	author = {Zhou, Zongwei and Rahman Siddiquee, Md Mahfuzur and Tajbakhsh, Nima and Liang, Jianming},
+	editor = {Stoyanov, Danail and Taylor, Zeike and Carneiro, Gustavo and Syeda-Mahmood, Tanveer and Martel, Anne and Maier-Hein, Lena and Tavares, João Manuel R.S. and Bradley, Andrew and Papa, João Paulo and Belagiannis, Vasileios and Nascimento, Jacinto C. and Lu, Zhi and Conjeti, Sailesh and Moradi, Mehdi and Greenspan, Hayit and Madabhushi, Anant},
+	urldate = {2020-05-29},
+	date = {2018},
+	langid = {english},
+	doi = {10.1007/978-3-030-00889-5_1},
+	note = {Series Title: Lecture Notes in Computer Science},
+	file = {Unet++.pdf:/Users/tianyangsun/Desktop/Paper archive/Unet and friends/Unet++.pdf:application/pdf}
+}
+
+@article{milletari_v-net_2016,
+	title = {V-Net: Fully Convolutional Neural Networks for Volumetric Medical Image Segmentation},
+	url = {http://arxiv.org/abs/1606.04797},
+	shorttitle = {V-Net},
+	abstract = {Convolutional Neural Networks ({CNNs}) have been recently employed to solve problems from both the computer vision and medical image analysis ﬁelds. Despite their popularity, most approaches are only able to process 2D images while most medical data used in clinical practice consists of 3D volumes. In this work we propose an approach to 3D image segmentation based on a volumetric, fully convolutional, neural network. Our {CNN} is trained end-to-end on {MRI} volumes depicting prostate, and learns to predict segmentation for the whole volume at once. We introduce a novel objective function, that we optimise during training, based on Dice coeﬃcient. In this way we can deal with situations where there is a strong imbalance between the number of foreground and background voxels. To cope with the limited number of annotated volumes available for training, we augment the data applying random non-linear transformations and histogram matching. We show in our experimental evaluation that our approach achieves good performances on challenging test data while requiring only a fraction of the processing time needed by other previous methods.},
+	journaltitle = {{arXiv}:1606.04797 [cs]},
+	author = {Milletari, Fausto and Navab, Nassir and Ahmadi, Seyed-Ahmad},
+	urldate = {2020-05-29},
+	date = {2016-06-15},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {1606.04797},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition},
+	file = {Vnet.pdf:/Users/tianyangsun/Desktop/Paper archive/Unet and friends/Vnet.pdf:application/pdf}
+}
+
+@article{ma_segmentation_2020,
+	title = {Segmentation Loss Odyssey},
+	url = {http://arxiv.org/abs/2005.13449},
+	abstract = {Loss functions are one of the crucial ingredients in deep learning-based medical image segmentation methods. Many loss functions have been proposed in existing literature, but are studied separately or only investigated with few other losses. In this paper, we present a systematic taxonomy to sort existing loss functions into four meaningful categories. This helps to reveal links and fundamental similarities between them. Moreover, we explore the relationship between the traditional region-based and the more recent boundary-based loss functions. The {PyTorch} implementations of these loss functions are publicly available at https://github.com/{JunMa}11/{SegLoss}.},
+	journaltitle = {{arXiv}:2005.13449 [cs, eess]},
+	author = {Ma, Jun},
+	urldate = {2020-06-02},
+	date = {2020-05-27},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {2005.13449},
+	keywords = {Computer Science - Machine Learning, Computer Science - Computer Vision and Pattern Recognition, Electrical Engineering and Systems Science - Image and Video Processing},
+	file = {Loss function odyssay.pdf:/Users/tianyangsun/Desktop/Paper archive/Loss function odyssay.pdf:application/pdf}
+}
+
+@article{goodfellow_explaining_2015,
+	title = {Explaining and Harnessing Adversarial Examples},
+	url = {http://arxiv.org/abs/1412.6572},
+	abstract = {Several machine learning models, including neural networks, consistently misclassify adversarial examples—inputs formed by applying small but intentionally worst-case perturbations to examples from the dataset, such that the perturbed input results in the model outputting an incorrect answer with high conﬁdence. Early attempts at explaining this phenomenon focused on nonlinearity and overﬁtting. We argue instead that the primary cause of neural networks’ vulnerability to adversarial perturbation is their linear nature. This explanation is supported by new quantitative results while giving the ﬁrst explanation of the most intriguing fact about them: their generalization across architectures and training sets. Moreover, this view yields a simple and fast method of generating adversarial examples. Using this approach to provide examples for adversarial training, we reduce the test set error of a maxout network on the {MNIST} dataset.},
+	journaltitle = {{arXiv}:1412.6572 [cs, stat]},
+	author = {Goodfellow, Ian J. and Shlens, Jonathon and Szegedy, Christian},
+	urldate = {2020-06-04},
+	date = {2015-03-20},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {1412.6572},
+	keywords = {Computer Science - Machine Learning, Statistics - Machine Learning},
+	file = {Explaining and Harnessing Adversarial Examples.pdf:/Users/tianyangsun/Desktop/Paper archive/Explaining and Harnessing Adversarial Examples.pdf:application/pdf}
+}
+
+@article{hofmanninger_automatic_2020,
+	title = {Automatic lung segmentation in routine imaging is a data diversity problem, not a methodology problem},
+	url = {http://arxiv.org/abs/2001.11767},
+	abstract = {Automated segmentation of anatomical structures is a crucial step in many medical image analysis tasks. For lung segmentation, a variety of approaches exist, involving sophisticated pipelines trained and validated on a range of different data sets. However, during translation to clinical routine the applicability of these approaches across diseases remains limited. Here, we show that the accuracy and reliability of lung segmentation algorithms on demanding cases primarily does not depend on methodology, but on the diversity of training data. We compare 4 generic deep learning approaches and 2 published lung segmentation algorithms on routine imaging data with more than 6 different disease patterns and 3 published data sets. We show that a basic approach - U-net - performs either better, or competitively with other approaches on both routine data and published data sets, and outperforms published approaches once trained on a diverse data set covering multiple diseases. Training data composition consistently has a bigger impact than algorithm choice on accuracy across test data sets. We carefully analyse the impact of data diversity, and the speciﬁcations of annotations on both training and validation sets to provide a reference for algorithms, training data, and annotation. Results on a seemingly well understood task of lung segmentation suggest the critical importance of training data diversity compared to model choice.},
+	journaltitle = {{arXiv}:2001.11767 [physics, stat]},
+	author = {Hofmanninger, Johannes and Prayer, Florian and Pan, Jeanny and Rohrich, Sebastian and Prosch, Helmut and Langs, Georg},
+	urldate = {2020-08-09},
+	date = {2020-01-31},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {2001.11767},
+	keywords = {Computer Science - Machine Learning, Statistics - Machine Learning, Computer Science - Computer Vision and Pattern Recognition, Electrical Engineering and Systems Science - Image and Video Processing, I.4.6, Physics - Medical Physics},
+	file = {2001.11767.pdf:/Users/tianyangsun/Desktop/Project/Paper archive/2001.11767.pdf:application/pdf}
+}
+
+@article{zhou_models_2019,
+	title = {Models Genesis: Generic Autodidactic Models for 3D Medical Image Analysis},
+	url = {http://arxiv.org/abs/1908.06912},
+	shorttitle = {Models Genesis},
+	abstract = {Transfer learning from natural image to medical image has established as one of the most practical paradigms in deep learning for medical image analysis. However, to ﬁt this paradigm, 3D imaging tasks in the most prominent imaging modalities (e.g., {CT} and {MRI}) have to be reformulated and solved in 2D, losing rich 3D anatomical information and inevitably compromising the performance. To overcome this limitation, we have built a set of models, called Generic Autodidactic Models, nicknamed Models Genesis, because they are created ex nihilo (with no manual labeling), self-taught (learned by self-supervision), and generic (served as source models for generating application-speciﬁc target models). Our extensive experiments demonstrate that our Models Genesis signiﬁcantly outperform learning from scratch in all ﬁve target 3D applications covering both segmentation and classiﬁcation. More importantly, learning a model from scratch simply in 3D may not necessarily yield performance better than transfer learning from {ImageNet} in 2D, but our Models Genesis consistently top any 2D approaches including ﬁne-tuning the models pre-trained from {ImageNet} as well as ﬁne-tuning the 2D versions of our Models Genesis, conﬁrming the importance of 3D anatomical information and signiﬁcance of our Models Genesis for 3D medical imaging. This performance is attributed to our uniﬁed self-supervised learning framework, built on a simple yet powerful observation: the sophisticated yet recurrent anatomy in medical images can serve as strong supervision signals for deep models to learn common anatomical representation automatically via selfsupervision. As open science, all pre-trained Models Genesis are available at https://github.com/{MrGiovanni}/{ModelsGenesis}.},
+	journaltitle = {{arXiv}:1908.06912 [cs, eess]},
+	author = {Zhou, Zongwei and Sodha, Vatsal and Siddiquee, Md Mahfuzur Rahman and Feng, Ruibin and Tajbakhsh, Nima and Gotway, Michael B. and Liang, Jianming},
+	urldate = {2020-08-15},
+	date = {2019-08-19},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {1908.06912},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition, Electrical Engineering and Systems Science - Image and Video Processing},
+	file = {Models Genesis\: Generic Autodidactic Models for 3D Medical Image Analysis.pdf:/Users/tianyangsun/Desktop/Project/Paper archive/Models Genesis\: Generic Autodidactic Models for 3D Medical Image Analysis.pdf:application/pdf}
+}
+
+@article{li_convergent_nodate,
+	title = {Convergent Learning: Do diﬀerent neural networks learn the same representations?},
+	abstract = {Recent successes in training large, deep neural networks ({DNNs}) have prompted active investigation into the underlying representations learned on their intermediate layers. Such research is diﬃcult because it requires making sense of non-linear computations performed by millions of learned parameters. However, despite the diﬃculty, such research is valuable because it increases our ability to understand current models and training algorithms and thus create improved versions of them. We argue for the value of investigating whether neural networks exhibit what we call convergent learning, which is when separately trained {DNNs} learn features that converge to span similar spaces. We further begin research into this question by introducing two techniques to approximately align neurons from two networks: a bipartite matching approach that makes one-to-one assignments between neurons and a spectral clustering approach that ﬁnds many-to-many mappings. Our initial approach to answering this question reveals many interesting, previously unknown properties of neural networks, and we argue that future research into the question of convergent learning will yield many more. The insights described here include (1) that some features are learned reliably in multiple networks, yet other features are not consistently learned; and (2) that units learn to span low-dimensional subspaces and, while these subspaces are common to multiple networks, the speciﬁc basis vectors learned are not; (3) that the average activation values of neurons vary considerably within a network, yet the mean activation values across diﬀerent networks converge to an almost identical distribution.},
+	pages = {17},
+	author = {Li, Yixuan and Yosinski, Jason and Clune, Jeﬀ and Lipson, Hod and Hopcroft, John},
+	langid = {english},
+	file = {Convergent Learning\: Do different neural networks learn the same representations?.pdf:/Users/tianyangsun/Desktop/Project/Paper archive/Convergent Learning\: Do different neural networks learn the same representations?.pdf:application/pdf}
+}
+
+@article{tarvainen_mean_2018,
+	title = {Mean teachers are better role models: Weight-averaged consistency targets improve semi-supervised deep learning results},
+	url = {http://arxiv.org/abs/1703.01780},
+	shorttitle = {Mean teachers are better role models},
+	abstract = {The recently proposed Temporal Ensembling has achieved state-of-the-art results in several semi-supervised learning benchmarks. It maintains an exponential moving average of label predictions on each training example, and penalizes predictions that are inconsistent with this target. However, because the targets change only once per epoch, Temporal Ensembling becomes unwieldy when learning large datasets. To overcome this problem, we propose Mean Teacher, a method that averages model weights instead of label predictions. As an additional beneﬁt, Mean Teacher improves test accuracy and enables training with fewer labels than Temporal Ensembling. Without changing the network architecture, Mean Teacher achieves an error rate of 4.35\% on {SVHN} with 250 labels, outperforming Temporal Ensembling trained with 1000 labels. We also show that a good network architecture is crucial to performance. Combining Mean Teacher and Residual Networks, we improve the state of the art on {CIFAR}-10 with 4000 labels from 10.55\% to 6.28\%, and on {ImageNet} 2012 with 10\% of the labels from 35.24\% to 9.11\%.},
+	journaltitle = {{arXiv}:1703.01780 [cs, stat]},
+	author = {Tarvainen, Antti and Valpola, Harri},
+	urldate = {2020-08-15},
+	date = {2018-04-16},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {1703.01780},
+	keywords = {Computer Science - Machine Learning, Computer Science - Neural and Evolutionary Computing, Statistics - Machine Learning},
+	file = {Mean teachers are better role models\: Weight-averaged consistency targets improve semi-supervised deep learning results.pdf:/Users/tianyangsun/Desktop/Project/Paper archive/Mean teachers are better role models\: Weight-averaged consistency targets improve semi-supervised deep learning results.pdf:application/pdf}
 }
