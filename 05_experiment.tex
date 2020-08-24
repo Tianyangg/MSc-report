@@ -1,7 +1,7 @@
 \section{Experiment}
 A good model, especially facing with small sample segmentation, should generalize well instead of overfitting on a small number of training data. The whole point of data augmentation, adding noise, etc, is to improve the generalizability of the trained neural network so that for the unseen data, the model predict reasonably well.\\
 
-Due to the limited ability of the GPU resource available, tuning hyper-parameters using grid search is too inefficient. Thus in our experiment, we leveraged the optimizer scheduler in pytorch so that starting from the learning rate starts from $lr=2\times10^{-4}$ and decreased to 0.8 * lr every 25 epochs so that the learning rate approach 0 in the later training stage.  
+Due to the limited ability of the GPU resource available, tuning hyper-parameters using grid search is too inefficient. Thus in our experiment, we leveraged the optimizer scheduler in PyTorch so that starting from the learning rate starts from $lr=2\times10^{-4}$ and decreased to 0.8 * lr every 25 epochs so that the learning rate approach 0 in the later training stage.  
 \begin{enumerate}
 	\item \textbf{learning rate}
 	\item \textbf{Optimizer:} We used Adam optimizer considering that Model Genesis, winning solution for NSCLC segmentation as well as other well known solutions used the model optimizer.
@@ -19,36 +19,36 @@ Note that since we cannot do anything to the various slice thickness, we sliced 
 For the segmentation of infection area using \textbf{fully labelled sample only}, we achieved Dice score (DSC) on the training set (50 volumes sliced in 2D) of 99.0321\%, 80.3601\% on the validation set and 79.9356\% on the testing set. All the volumes was preprocessed as described in Section 3 and augmented the data using random rotating, and elastic transformation and {\color{red}mix up augmentation} on the training set only.
 
 \subsection{Training}
-We experimented two transfer learning intialization in this section. First we trained the Binary segmentation task with the images from NSCLC and MSD dataset, then the model was fine tuned using two different methods suggested in work \cite{wang_improving_2019}: Fine-Tuning all layers (reinitialize the last layer), and Fine-Tuning only the Decoder, shown in figure \ref{fig:transfer-learning-graph}.\\
+We compared the model trained from scratch and with transfer learning in this experiment. More specifically, we experimented two transfer learning intialization in this section. First we trained the Binary segmentation task with the images from NSCLC and MSD dataset, then the model was fine tuned using two different methods suggested in work \cite{wang_improving_2019}: Fine-Tuning all layers (reinitialize the last layer), and Fine-Tuning only the Decoder, shown in figure \ref{fig:transfer-learning-graph}.\\
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.8\textwidth]{img/Networks/Unet-train.pdf}
-	\includegraphics[width=0.8\textwidth]{img/Networks/Transfer-Finetune-all.pdf}
-	\includegraphics[width=0.8\textwidth]{img/Networks/Transfer-freeze-encoder.pdf}
-	\caption{An illustration of Network structure used for pretraining and transfer-learning}
-	\label{fig:transfer-learning-graph}
-\end{figure}
-
-\textbf{Pretraining with NSCLC and MSD Dataset}\\
-
-First the we pretrained the segmentation model using non-Covid dataset based on the assumption that the weights serves as good starting point for the fine-tuning stage. Figure \ref{fig:filtered_Lung} plots the validation loss every 10 epochs.\\
 %\begin{figure}
 %	\centering
-%	\includegraphics[width=0.8\textwidth]{img/Loss_curves/Pretrain_lungs_plot}
-%	\caption{Validation Loss with pre-training on non-Covid Lung dataset}
-%	\label{fig:pretrain_lungs}
+%	\includegraphics[width=0.8\textwidth]{img/Networks/Unet-train.pdf}
+%	\includegraphics[width=0.8\textwidth]{img/Networks/Transfer-Finetune-all.pdf}
+%	\includegraphics[width=0.8\textwidth]{img/Networks/Transfer-freeze-encoder.pdf}
+%	\caption{An illustration of Network structure used for pretraining and transfer-learning}
+%	\label{fig:transfer-learning-graph}
 %\end{figure}
-
-\textbf{Fine Tuned with Model Genesis:}\\
-
-{\color{red}Paper \cite{zhou_models_2019} pretrained a 3D Unet-like model using several public dataset in the way that trained the model to restore image using destroyed image. The model was published in 3D \footnote{https://github.com/MrGiovanni/ModelsGenesis/tree/master/pytorch}. Since we did out experiment in 2D, we first load the 3D model and extract the layer weight. Then we flatten the weights into 2D as the initialization.}\\
-
-\textbf{Freezing encoder:}
-We freeze the first half of the encoder, and fine tuned the decoder except that we re-initialized the output layer.\\
-
-\textbf{Fine-Tune-All:}
-The whole network is fine tuned and the last block of convolutional layers was reinitialized. \\
+%
+%\textbf{Pretraining with NSCLC and MSD Dataset}\\
+%
+%First the we pretrained the segmentation model using non-Covid dataset based on the assumption that the weights serves as good starting point for the fine-tuning stage. Figure \ref{fig:filtered_Lung} plots the validation loss every 10 epochs.\\
+%%\begin{figure}
+%%	\centering
+%%	\includegraphics[width=0.8\textwidth]{img/Loss_curves/Pretrain_lungs_plot}
+%%	\caption{Validation Loss with pre-training on non-Covid Lung dataset}
+%%	\label{fig:pretrain_lungs}
+%%\end{figure}
+%
+%\textbf{Fine Tuned with Model Genesis:}\\
+%
+%{\color{red}Paper \cite{zhou_models_2019} pretrained a 3D Unet-like model using several public dataset in the way that trained the model to restore image using destroyed image. The model was published in 3D \footnote{https://github.com/MrGiovanni/ModelsGenesis/tree/master/pytorch}. Since we did out experiment in 2D, we first load the 3D model and extract the layer weight. Then we flatten the weights into 2D as the initialization.}\\
+%
+%\textbf{Freezing encoder:}
+%We freeze the first half of the encoder, and fine tuned the decoder except that we re-initialized the output layer.\\
+%
+%\textbf{Fine-Tune-All:}
+%The whole network is fine tuned and the last block of convolutional layers was reinitialized. \\
 
 \begin{table}[h]
 	\centering
@@ -133,7 +133,8 @@ Comparing the similarity of feature map in the segmentation model, we observed t
 	\item Layers in the Decoder observed convergence almost at the same time.
 \end{itemize}
 
-\subsubsection{Feature space comparison for transfer learning} %%TODO Change the title here
+\subsubsection{Feature space comparison for transfer learning} 
+%%TODO Change the title here
 Another question we want to discuss is: \textbf{How much did the model move given the amount of data it observed during the Fine-Tuning?}\\
 
 \textbf{A larger amounts of data:}\\
@@ -164,16 +165,6 @@ The purpose of leveraging unlabelled data during training is to improve the gene
 
 \subsection{Psuedo Label Assignment -- Cosine Similarity in the feature space}
 %TODO: change GAP to GMP
-We sampled both the labelled samples and the unlabelled images. For the labeled samples, we first get the bounding box of the segmentation mask, then enlarge the mask by a maximum of 10 pixels each side, and we sampled images within that bounding box.
-For unlabeled images, we use the coarse 3D segmentation to generate the bounding box, and the bounding box was enlarged maximum of 15 pixels, we sample patches within the coarse bounding box.
-To assign a noisy psuedo label to the cropped images, we take the encoder part of the trained 2D segmentation model and append a Global Average Pooling function. We then encode a dictionary of the annotated samples in the feature space.\\
-\begin{figure}
-	\centering
-	\includegraphics[width=0.9\textwidth]{img/semi-experiment/latent-space}
-	\caption{An illustration of feature encoding process}
-\end{figure}
-
-For assigning noisy psuedo labels, given an unlabeled sample $I_{unlabeled}$ and its latent representation $Latent(I_{unlabelled})$, we calculated the pairwise cosine similarity and return the maximum cosine similarity score as the weight for this sample. \\
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{img/semi-experiment/cosine_sim_histogram}

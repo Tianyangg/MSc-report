@@ -4,6 +4,10 @@
 %% see link: https://web.archive.org/web/20070926231241/http://www.intl.elsevierhealth.com/e-books/pdf/940.pdf
 Computed Tomography (CT) scan leverages X-rays to generate images of the body through rapid rotation of the X-ray tube. Then \textbf{attenuation value} of the tissue can be calculated from the intensity reading of the tissue of each voxel to reconstruct the pixels in the images.\\
 
+\subsubsection{Attenuation Value}
+Given a photon's initial intensity $I_{0}$, the attenuation value $\mu$ is a linear coefficient describing the change of $I_{0}$ after it pass through a uniform object with spacial parameter $\eta$. The new intensity can be denote as $I(\eta)=I_{0} e^{-\mu \eta}$
+
+\subsubsection{Hounsfield Units}
 Hounsfield units (HU) represents the average attenuation value of each voxel compared to the attenuation value of water. CT numbers can take value between -1000 and 1000 while 2000 shades of grey is out of the capacity of human eyes can distinguish. Thus, only a limited number of HU are displayed for human interpretation. Lung window is normally set to [-1250, 250].
 
 \subsection{Thick and thin slices}
@@ -15,11 +19,15 @@ Thin slices are generally regarded as planes representing thickness of less than
 \section{Deep learning fundamentals}
 In this section, we briefly mention some of the fundementals of Deep Learning and some layer structures used in our experiment, note that most of our notation follows book\cite{Goodfellow-et-al-2016}.
 
-\subsection{Optimizers in training neural network}
+\subsection{Optimizatation in training neural network}
 %TODO mention optimizers here
-\textbf{Batch Gradient Desent}\\
-\textbf{Adam op}\\
+\subsubsection{Gradient Descent}
+Fist of all, Gradient Descent Algorithm leverages the first order derivative to modify the weights so that a function gradually reach its local minima. The mathematical definition is:
+$$\boldsymbol{\theta}=\boldsymbol{\theta}-\boldsymbol{\alpha} \cdot \nabla \mathrm{J}(\boldsymbol{\theta})$$ 
+in which $\mathrm{J}$ denotes the loss function, $\theta$ is the trainable parameter and $\alpha$ is the learning rate.
 
+\subsubsection{Adam op}
+%TODO adam optimization
 \subsection{Convolutional Neural Network}
 %TODO provide a brief theoretical summary of Convolution here
 Convolutional neural networks (CNN) improved deep learning with respect to \textbf{Sparse interactions, parameter sharing and equivariant representations} that employ mathematical convolution operation denoted with asterisk symbol $*$. The imaging domain usually make use of discrete convolution: $$s(t)=(x * w)(t)=\sum_{a=-\infty}^{\infty} x(a) w(t-a)$$
@@ -36,6 +44,14 @@ In modern Neural Networks, some of the activation functions are:
 	\item Sigmoid: $\sigma(x)=\frac{1}{1+e^{-x}}$
 	\item Softmax: $\sigma(\boldsymbol{x})_{i}=\frac{e^{x_{i}}}{\sum_{j=1}^{n} e^{x_{j}}} \mid i \in\{1, \ldots, n\}$ Softmax scale the layer output between 0 and 1 and its sum = 1.
 \end{itemize}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{img/background_img/convolution}
+	\caption{An example of convolution using Sobel filter} 
+	%TODO change citation \footnote{https://medium.com/pallawi.ds/ai-starter-build-your-first-convolution-neural-network-in-keras-from-scratch-to-perform-a059eaa6d4ff}
+	\label{fig:convolution}
+\end{figure}
 
 \subsection{Pooling}
 Pooling function modify the output of a layer at a specific location through summarizing its neighboring outputs that helps an approximate invariant. Max pooling is simply the maximum output within a neighborhood. Average pooling takes the average of the neighborhood as output instead of the maximum. An illustration of pooling is shown in figure \ref{fig:pooling}
@@ -64,9 +80,6 @@ Batch Normalization adds two trainable parameters to each of the layer. The proc
     \State $y_{i} \leftarrow \gamma \widehat{x}_{i}+\beta \equiv \mathrm{B} \mathrm{N}_{\gamma, \beta}\left(x_{i}\right)$
     \end{algorithmic}
     \end{algorithm}
-Define empirical mean and variance of a batch of the training set as:
-$$\mu_{B}=\frac{1}{m} \sum_{i=1}^{m} x_{i}$$
-$$\sigma_{B}^{2}=\frac{1}{m} \sum_{i=1}^{m}\left(x_{i}-\mu_{B}\right)^{2}$$
 
 %TODO add more bullshit about batch normalization
 
@@ -129,12 +142,11 @@ $$\tilde{y}=\lambda y_{i}+(1-\lambda) y_{j}$$
 The work was originally implemented on training GANs. Later in medical domain, \cite{panfilov_improving_2019} further investigated mixup method on Knee MR images on OIA database \footnote{http://www.oai.ucsf/.edu/} that consists of 88 3D MRI scans. The work showed mixup improves generalization under their experiment setup while having risk of slight underfitting due to to the strong regularization. The author further mentioned not using weight decay in the experiment solve the underfitting issue.
 \cite{tajbakhsh_embracing_2020} summarized mixup augmentation method gives "soft labels". Variations of the mixup method utilize asymmetric is further explored in \cite{li_overfitting_2019} trained on Brain MR images, and the method reports huge gain under their experiment setup.
 
-%\subsection{Learning for augmentation}
-%Following the traditional augmentation methods, we here want to discuss a few medical image augmentation based on deep learning. Specifically we focus on those who used one or a few data during the augmentation which is close to the problem we are facing.\\
-%
-%%TODO citation in adversarial defense
-%Adversarial defense was deployed in \cite{suk_brain_2019} for the augmentation of small samples in Brain MR segmentation. Adversarial samples generated though Fast Gradient Sign Method\cite{goodfellow_explaining_2015} and then added as training data to improve the robustness. So far we believe this method worth trying because the experiment was trained on 7 brain volumes, which is close to our task.\\
+\subsection{Learning for augmentation}
+Following the traditional augmentation methods, we here want to discuss a few medical image augmentation based on deep learning. Specifically we focus on those who used one or a few data during the augmentation which is close to the problem we are facing.\\
 
+%TODO citation in adversarial defense
+Adversarial defense was deployed in \cite{suk_brain_2019} for the augmentation of small samples in Brain MR segmentation. Adversarial samples generated though Fast Gradient Sign Method\cite{goodfellow_explaining_2015} and then added as training data to improve the robustness. So far we believe this method worth trying because the experiment was trained on 7 brain volumes, which is close to our task.\\
 
 \begin{table}
 \begin{tabular}{lllll}
@@ -167,6 +179,11 @@ Recent work explored several across disease transfer learning training technique
 The Source Dataset: Multiple Sclerosis Dataset consists 3630 MRI volumes and used Brain Tumor Dataset as Target dataset including 210 high-grade glioma (HGG) and 75 low-grade glioma (LGG) Brain MRI scans. The training target is a decaying weighted categorical cross entropy loss weighted by relative voxel. Their best validation performance of pre-trained network achieved validation performance AUC 0.77. Experiment result on 20, 50, 100 and 150 samples during Fine tuning respectively showed that Fine tuning all parameters out performed the rest methods in most cases.\\
 
 One potential drawback is that compared to the our task, the target training set is relatively larger, the performance is expected to be less ideal when using "fine tune all" method using 4 or less volumes in our case.
+
+\subsection{Special network design}
+Transfer learning methods usually require small samples to update millions of parameters that take the risk of overfitting \cite{shaban_one-shot_2017}. The design of multiple branch network, usually includes conditioner arm and segmentation arms inspired the deep learning in medical domain to go beyond transfer learning while encourage a stronger between-arms interaction to compensate the lacking in pre-trained model \cite{roy_squeeze_2019}. The proposed method perform 3D volume segmentation at test time while use 2D images during training. However the method requires start and end slice to be indicated for each query volume and still not achieving good dice score.\\
+
+Paper \cite{suk_brain_2019} trained segmentation of Brain MR image on 7 brain volumes after Adversarial defense augmentation. The work first split the segmentation from easy to hard into 2 individual classifiers then joint learning with dense pixel segmentation. The author reported that the result outperformed Unet and Vnet method trained from scratch. We argue that the augmentation provide good result in the segmentation accuracy while the segmentation part is not well explained in the paper. We have emailed the author for further details.
 
 % TODO change citation in table header
 \begin{table}
@@ -258,6 +275,6 @@ First let $l$ denotes the output of layer over a dataset $D$, The paper perform 
 \end{itemize}
 
 SVCCA interpret the result of any two learnt subspace over a dataset. Later in work \cite{raghu_transfusion_2019}, the author utilized the method to understand the behavior of transfer learning in rather larger amounts of data on medical classification task.\\
-
+\newpage
 \section{Ethics and professional considerations}
 \newpage
