@@ -1,29 +1,54 @@
-\section{Motivation}
+\section{Small sample segmentation}
+Deep learning society has witnessed great progress in various kinds of tasks using deep convolutional models in the past decade. The emergence of large-scale dataset such as ImageNet \footnote{http://www.image-net.org/}, CIFAR \footnote{https://www.cs.toronto.edu/~kriz/cifar.html} and COCO \footnote{https://cocodataset.org/\#home} provide relatively a variety of data as well as useful deep learning benchmarks for training complicated deep learning architectures.\\
 
-\section{Bullshit}
+However, this is not necessarily the case in the medical domain where carefully collected and labelled data is available or published. One common issue in medical segmentation is that the data and its annotation acquiring is time consuming and also more sensitive to individual difference. A common scenario in medical imaging domain is that only a small number of annotated data is available for training and evaluation. A relaxed case is when a relatively larger amounts of unlabelled data is obtained but without expert labeling. The two scenario brings us to two problem set up: \textbf{Supervised segmentation} and \textbf{Semi-supervise segmentation}.
 
-\section{Summarization of out work}
-{\color{red} In this project, we dealt with two common scenario in medical imaging on segmentation task: (1)only a small set of labelled samples are collected, and (2) a small set of labelled data is available and in addition, a relatively larger amounts of data is collected but not labelled.\\
+\section{Motivation of the task}
+The on going pandemic of coronavirus from winter 2019 till summer 2020 (Covid-19) attract much attention in the medical artificial intelligence domain. Reverse Transcription-Polymerase Chain Reaction (PT-PCR) test is so far, considered the gold standard to report if the patient is test positive, while facing the shortage of testing ability especially in the early stage of the Covid-19 outbreak as well as insufficient sensitivity (high false negative rate). Radiometry diagnosis such as CT scans are more approachable and provide a direct insight into the situation of lungs that could help the early diagnosis of suspected infection, as well as providing the change of Ground glass opacity or nodules. At the same time, radiometry study on the effect of Covid-19 on lungs using CT scans reports that lower right lungs is usually easier to be infected compared to other areas such as upper right lungs using group study. Other findings using CT imaging analysis  showed that after patients were cured, the white part in lungs such as ground glass opacity will still increased and gradually slowly absorbed in the following months.\\
 
- For case 1, we explored transfer learning using different pretraining method or available pretrained models. We also tried to understand the network behaviour during transfer learning.\\
+While reading and diagnosing interesting area of CT slices that usually contains around 100 slices along the Axial axis is a time consuming process. Thus the medical imaging domain designed and experimented a large amounts of deep neural architectures aiming to help the CT reading process of several disease including Covid-19.\\
+
+Many works have beed published in the fast changing pandemic based on various precious private dataset. However, very few of them, by the time this report was written, was publicly available to the research community. So one question came into our mind is that: \textbf{How would we give reasonably good segmentation of infection areas when only a small amount of data is available?}\\
+
+In the early stage of this project (April to Late June, 2020), we only have access to the Cov-19 Segmentation benchmark which contains 20 Volumes from multiple centers, which brings us the small sample segmentation setup. In late June 2020, MosMed published their CT scans for public research with 50 volumes of annotated thick slice CT scans and around 500 unlabelled confirmed-case CT scans. The publish of this dataset brings us the second task of a semi-supervise setup for segmentation.\\
+
+The aim of our work here, is to explore the domain of \textbf{imperfect dataset segmentation task}, with small sample size or combined with some unlabelled training medical images, and further experiment the method on the ongoing pandemic.
+
+\section{Summarization of our work}
+In short, we summarize our \textbf{contributions} as below:
+\begin{enumerate}
+	\item We designed an experiment that leveraged the SVCCA tool for the segmentation model behavior under supervised small sample segmentation setup.
+	\item We built a semi-supervise pipeline that improve the generalizability of segmentation model leveraging more unlabelled data samples.
+\end{enumerate}
+
+More specifically, in this project, we dealt with two common scenarios in medical imaging on segmentation task: (1)only a small set of labelled samples are collected, and (2) a small set of labelled data is available and in addition, a relatively larger amounts of data is collected but not labelled.\\
+
+ For case 1, we explored transfer learning using different pre-training method or available pre-trained models. We also tried to understand the network behavior during transfer learning. We described our design of SVCCA setup in \textbf{section 3.2} and showed the results in \textbf{section 4.6}. \\
  \begin{enumerate}
- 	\item First, we pretrained the model on non-Covid Lung volumes to get a pretrained model $F_{pretrained}$, and we also obtained the available pretrained model of Model Genesis \cite{zhou_models_2019}.
- 	\item Then we perfrom transfer learning using Covid dataset on the two pretrained model weights.
- 	\item We analyzed the results using SVCCA tool to get a further understanding of the Fine-tuned model. 
+ 	\item First, we pre-trained the model on non-Covid Lung volumes to get a pretrained model $F_{pretrained}$
+ 	\item  Then we performed transfer learning using Covid dataset on the pretrained model weights.
+ 	\item \textbf{We designed the SVCCA experiment} in which We analyzed the layers behavior during transfer learning to get a further understanding of the Fine-tuned model. 
  \end{enumerate}
  
- For case 2, we further explored the semi-supervise learning under this typical semisupervise setup. For psuedo labeling, we proposed a method that assign the segmentation label using cosine similarity score from the labelled datset. 
- 
+ For case 2, we further explored the semi-supervise learning. Our design  contains three main parts: \textbf{Coarse segmentation for patches sampling, pseudo label assigning, and Meat-Teacher training.} For pseudo labeling, we designed a method that assign the segmentation label using cosine similarity score from the labeled dataset. We give a more detailed description of our design in \textbf{section 3.3} and the result in \textbf{section 4.7}
  \begin{enumerate}
  	\item First, given a pretrained model A, we fine-tune to get A' on the small set of Covid dataset until the model gives relatively good performance (e.g Dice coefficient over 0.75).
- 	\item Next, we random crop 120 68 * 68 patches $P_{img}$ from the labelled datset and store the labels $P_{label}$. We randomly crop 32 68 * 68 slices from each volume of the unlabelled dataset.
- 	\item Then, we take the encoder part of A'. Given an unlabelled patch $p_{unlabelled}$, we calculate its cosine similarity with each data in $P_{img}$ in the encoded latent space and get the top two most similar labels $P_{label_{i}}, P_{label_{j}}$ with similarity score $S_{i}, S_{j}$. We assign the mask with the weighted combinatino of the labels to the unlablled image \textbf{Only if both the similarity score is larger than 0.90}.
- 	\item We treated those fake labels in step 3 as 'soft-mask'. We made a copy of A' as $A'_{copy}$ as the student network and trained using the same way as mean-teacher training skeme.
- 	\item We obtained an improvement of ??? percent compared with the transfer learning method. 
+ 	\item Next, we randomly crop 120 68 * 68 patches $P_{img}$ from the labelled datset and store the labels $P_{label}$. We randomly crop 32 68 * 68 slices from each volume of the unlabelled dataset.
+ 	\item Then, we take the encoder part of A'. Given an unlabelled patch $p_{unlabelled}$, we calculate its cosine similarity with each data in $P_{img}$ in the encoded latent space and get the most similar labels $P_{label_{i}}$ with similarity score $S_{i}$. We assign the mask of the labels to the unlabeled images with a similarity score $S_{i}$ for the labels with \textbf{$S_{i} \in [0.87, 0.96]$ }.
+ 	\item The expert labeled images go through the student network and calculate the segmentation loss $L_{seg}$; The pseudo labeled samples go through the student network for weighted segmentation loss $w \times 0.5 L_{seg}$ of which $w$ is the cosine similarity score, and the teacher network for $consistency$ loss between two network output; The unlabeled images go through the teacher model and student model for $consistency$ loss.
+ 	\item We update the student network using loss back propogation, and update the teacher model using exponential moving everage. The training is the mean-teacher training scheme proposed in \cite{tarvainen_mean_2018}.
  	\end{enumerate}
- }
+
  
 \newpage 
 
 \section{Outline of this report}
+We structured the report is as follows:
+\begin{itemize}
+	\item Chapter 2 - Background: We provide an overview of the theoretical background to understand the algorithms and the models we designed and used in this project. We covered a brief explanation of CT imaging, some basics of Convolutional Neural Networks, common network architectures for medical segmentation, and then we provide a literature review of the current small sample medical segmentation.
+	\item Chapter 3 - Experimental Design: We explain our network architecture for segmentation, and building blocks for the experiment. We give the details for SVCCA evaluation. For the second half, we give an detailed illustration for the designed semi-supervise pipeline and clarify the whole process using an overview graph.
+	\item Chapter 4 - Experiments: First, we precisely described the data we used and the preprocessing steps, each step we give the result and justifications. Then we provide detail experiment steps and results in this chapter, and we evaluate our results with our assumptions.
+	\item Chapter 5 - Conclusion and future work: We summarized the work in our project and cover the suggestions for future experiment or network design approaches.
+\end{itemize}
+
 

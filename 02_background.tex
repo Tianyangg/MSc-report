@@ -5,28 +5,48 @@
 Computed Tomography (CT) scan leverages X-rays to generate images of the body through rapid rotation of the X-ray tube. Then \textbf{attenuation value} of the tissue can be calculated from the intensity reading of the tissue of each voxel to reconstruct the pixels in the images.\\
 
 \subsubsection{Attenuation Value}
-Given a photon's initial intensity $I_{0}$, the attenuation value $\mu$ is a linear coefficient describing the change of $I_{0}$ after it pass through a uniform object with spacial parameter $\eta$. The new intensity can be denote as $I(\eta)=I_{0} e^{-\mu \eta}$
+Given a photon's initial intensity $I_{0}$, the attenuation value (or Absortion coefficient) $\mu$ is the coefficient describing the change of $I_{0}$ after it pass through an object. An illustration is shown in figure \ref{fig:attenutation}. In linear case with spacial parameter $x$. The new intensity can be denote as: $$I(x)=I_{0} e^{-\mu x}$$ In the non-linear case, the non uniform absorbtion is described as: $$\frac{d I(x)}{d x}=-\mu(x) I(x)$$ 
+Then we write the new intensity as: $$I_{non-linear}(x)=I_{0} e^{-\int_{a}^{b} \mu(x) d x}$$
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.4\textwidth]{img/background_img/attenutation}
+	\caption{Attenuation}
+	\label{fig:attenutation}
+\end{figure}
 
 \subsubsection{Hounsfield Units}
-Hounsfield units (HU) represents the average attenuation value of each voxel compared to the attenuation value of water. CT numbers can take value between -1000 and 1000 while 2000 shades of grey is out of the capacity of human eyes can distinguish. Thus, only a limited number of HU are displayed for human interpretation. Lung window is normally set to [-1250, 250].
+Hounsfield units (HU) represents the average attenuation value of each voxel compared to the attenuation value of water. CT numbers can take value between -1000 and 1000 while 2000 shades of grey is out of the capacity of human eyes can distinguish. Thus, only a limited number of HU are displayed for human interpretation. Lung window is normally set to [-1250, 250]. Figure \ref{fig:HU_value} shows some common HU value range of different matters.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{img/background_img/HU_value.png}
+	\caption{Common Hounsfield Unit values including human body tissue}
+	\label{fig:HU_value}
+\end{figure}
 
 \subsection{Thick and thin slices}
 Thin slices are generally regarded as planes representing thickness of less than 3mm \footnote{http://tech.snmjournals.org/content/36/2/57} In our work, we experienced slice thickness from 1mm to 8mm. \\
-{\color{red} In medical CT scanning, considering the dose of CT, and the equipment limitation, CT slice this varies a lot}
+{\color{red} In medical CT scanning, considering the dose of CT, and the equipment limitation, thick slice tend to show little or no slice-wise information along the axial slices.} An illustration of thick and thin slice difference is shown in figure \ref{fig:thick_thin_slice}
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{img/background_img/thin_thick_slice.png}
+	\caption{Spacing diversity along the Z (Axial) axis. Left: thin slice with spacing 1; Right: thick slice with spacing 8.}
+	\label{fig:thick_thin_slice}
+\end{figure}
 \newpage
 
 \section{Deep learning fundamentals}
-In this section, we briefly mention some of the fundementals of Deep Learning and some layer structures used in our experiment, note that most of our notation follows book\cite{Goodfellow-et-al-2016}.
+In this section, we briefly mention some of the fundamentals of Deep Learning and some layer structures used in our experiment, note that most of our notation follows the book \textit{Deep Learning}\cite{Goodfellow-et-al-2016}.
 
-\subsection{Optimizatation in training neural network}
+\subsection{Optimization in training neural network}
 %TODO mention optimizers here
 \subsubsection{Gradient Descent}
 Fist of all, Gradient Descent Algorithm leverages the first order derivative to modify the weights so that a function gradually reach its local minima. The mathematical definition is:
 $$\boldsymbol{\theta}=\boldsymbol{\theta}-\boldsymbol{\alpha} \cdot \nabla \mathrm{J}(\boldsymbol{\theta})$$ 
-in which $\mathrm{J}$ denotes the loss function, $\theta$ is the trainable parameter and $\alpha$ is the learning rate.
+in which $\mathrm{J}$ denotes the loss function, $\theta$ is the trainable parameter and $\alpha$ is the learning rate. 
+\subsubsection{Adam optimizer}
 
-\subsubsection{Adam op}
 %TODO adam optimization
 \subsection{Convolutional Neural Network}
 %TODO provide a brief theoretical summary of Convolution here
@@ -64,7 +84,7 @@ Pooling function modify the output of a layer at a specific location through sum
 \end{figure}
 
 \subsection{Batch Normalization}
-Batch normalization (BN) was proposed to mitigate \textbf{internal covariate shift} by fixing the mean and variance of each layer's inputs so that it allows each layer of the network to learn more independently from the rest of the layers.\\
+Batch normalization (BN) was proposed in \cite{BatchNorm} to mitigate \textbf{internal covariate shift} by fixing the mean and variance of each layer's inputs so that it allows each layer of the network to learn more independently from the rest of the layers.\\
 
 Batch Normalization adds two trainable parameters to each of the layer. The process of BN is shown below:
 \begin{algorithm}
@@ -85,30 +105,37 @@ Batch Normalization adds two trainable parameters to each of the layer. The proc
 
 \subsection{Attention Gate}
 %TODO add details of the impelemted attention gate to the network
-Attention Gate proposed in \cite{} provided a way that we can train the network for segmentation with extra localization objective.
+Attention Gate proposed in \cite{Attention_gate_network} provided a way that we can train the network for segmentation with extra localization objective.
 Let $\mathbf{x}^{l}=\left\{\mathbf{x}_{i}^{l}\right\}_{i=1}^{n}$ denotes the activation map over a layer such that $x_{i}^{l}$ is the pixel-wise feature vector with dimension equals to the number of feature maps of the output. Attention Gate learn a scaling vector $\alpha_{i}^{l}$ as the weight to scale the feature vector, more formally:
 $$\hat{\mathbf{x}}^{l}=\left\{\alpha_{i}^{l} \mathbf{x}_{i}^{l}\right\}_{i=1}^{n}$$
 The additive attention in the paper, can then be written as:
 $$q_{a t t, i}^{l}=\psi^{T}\left(\sigma_{1}\left(\boldsymbol{W}_{x}^{T} \boldsymbol{x}_{i}^{l}+\boldsymbol{W}_{g}^{T} \boldsymbol{g}+\boldsymbol{b}_{x g}\right)\right)+b_{\psi}$$
 $$\alpha^{l}=\sigma_{2}\left(q_{a t t}^{l}\left(\boldsymbol{x}^{l}, \boldsymbol{g} ; \boldsymbol{\Theta}_{a t t}\right)\right)$$
-in which $\sigma_{1}$ denotes a non-linear activation function such as ReLU and $\sigma_{2}$ is a normalizing function so that $\sum_{i} e^{q_{a t t, i}^{l}} = 1$. In the paper, the author used sigmoid as activation function. Note the the attention gate is usually obtained from a coarser feature map. Figure \ref{fig:att_gate} shows the attention gate structure
+in which $\sigma_{1}$ denotes a non-linear activation function such as ReLU and $\sigma_{2}$ is a normalizing function so that $\sum_{i} e^{q_{a t t, i}^{l}} = 1$. In the paper, the author used sigmoid as activation function. Note the the attention gate is usually obtained from a coarser feature map. Figure \ref{fig:att_gate} shows the attention gate structure.
 
 \begin{figure}
 \centering
 \includegraphics[width = 0.8\textwidth]{img/background_img/attention_gate}
-\caption{Attention Gate structure proposed in \cite{}}
+\caption{Attention Gate structure proposed in \cite{Attention_gate_network}}
 \label{fig:att_gate}
 \end{figure}
 
 
-\subsection{Encoder decoder architecture}
+\subsection{Encoder-Decoder architecture}
+One of the breakthrough in both medical and non-medical segmentation is the presense of an Encoder-Decoder architecture network. Encoder combines non-linear feature extracting with convolution and down-sampling so that the Encoder can learn a rather 'rich hidden space representation'. The Decoder generates segmentation through upsamle or transpose convolution so that the network ouput is the same dimension of the input images. Paper \cite{Liu2018DeepCN} leveraged the Encoder-Decoder to segment bones in MR images. Figure \ref{fig:segnet_encoderdecoder} shows the encoder-decoder architecture leveraged in the paper.
+
+\begin{figure}
+\centering
+\includegraphics[width = 0.9\textwidth]{img/background_img/segnet_background}
+\caption{An Encoder-Decoder structure network proposed in \cite{Liu2018DeepCN}}
+\label{fig:segnet_encoderdecoder}
+\end{figure}
 
 
-
-\subsection{Unet \& Friends}
+\subsection{U-Net and skip connections}
 This section we introduce several well known methods in medical segmentation. Unet \cite{ronneberger_u-net_2015} and its variations plays a dominant role in current medical segmentation tasks, and it is often used as a baseline model for performance evaluation in the literature.\\
 
-Unet \cite{ronneberger_u-net_2015} is among one of the most widely used medical segmentation models since the day it was proposed. The original Unet consists of a contracting path followed by an expansive path that gives a "U" shaped architecture. The network architecture is shown in figure \ref{fig:unet-arch}.
+U-Net \cite{ronneberger_u-net_2015} is among one of the most widely used medical segmentation models since the day it was proposed based on the Encoder-Decoder network structure it proposed. The original Unet consists of a contracting path followed by an expansive path that gives a "U" shaped architecture. The network architecture is shown in figure \ref{fig:unet-arch}.
 Later this 2D model was extended to 3D version in \cite{ourselin_3d_2016} for for Kidney segmentation tasks so that the model learn features from information implicated between slices.\\
 \begin{figure}
 \centering
@@ -127,12 +154,13 @@ In medical domain, huge dataset consists of large numbers of carefully labelled 
 In this section, we focus on a few approaches that has been used in current literature which aim to explore the potential of existing training samples through various augmentation methods to alleviate the insufficient training samples in medical imaging. We discuss data augmentation method as well as the amount of data used in each work. Table \ref{tab:Augtable} provide an overview of each method.
 
 \subsection{Traditional Data Augmentation}
-Traditional Data augmentation method in imaging domain refers to the process that does not require such training data to learn a transformation.\\
+Traditional Data augmentation methods in imaging domain refers to the process that does not require such training data to learn a transformation.\\
 
-\cite{zhang_when_2019} investigated data augmentation methods under 3D medical domain of MR and ultrasound images. 
+Paper \cite{zhang_when_2019} investigated data augmentation methods under 3D medical domain of MR and ultrasound images. 
 The data augmentation process consists of a sequence of traditional transformation techniques. The paper argued that sharpness in medical images during training process limits model generalization thus applying gaussian filter to images take noise into consideration. Brightness and contrast difference caused by variations in scanning protocols brings potential domain shift thus a sequenced random shift followed gamma correction and random linear transform in intensity are reasonable data augmentation methods. Finally spatial transformations including rotation, flipping, scaling and deformation is added to the augmentation process.
+
 The source domain in this method is Prostate dataset \footnote{http://medicaldecathlon.com/index.html\#tasks} which consists 48 4D volumes.
-We argue here that the stacked transformation is a physical transformation process independent to the size of dataset because no learning or training process is required in this augmentation method thus might bring benefits to our task. However, although Deep learning models (Convolutional Neural Networks) are scale and rotation invariant, medical images differs from natrual images that scanning was conducted with a certain position, i.e. patients usually lie on a CT bed facing up for CT scanning. Thus flipping the lung volumes or rotating the lungs more than 5 degrees seems too 'violent'.\\
+We argue here that the stacked transformation is a physical transformation process independent to the size of dataset because no learning or training process is required in this augmentation method thus might bring benefits to our task. However, although Deep learning models (Convolutional Neural Networks) are scale and rotation invariant, medical images differs from natrual images that scanning was conducted with a certain position, i.e. patients usually lie on a CT bed facing up for CT scanning. Thus flipping the lung volumes or rotating the lungs more than 5 degrees is less reasonble.\\
 
 
 %%%---------
@@ -143,10 +171,10 @@ The work was originally implemented on training GANs. Later in medical domain, \
 \cite{tajbakhsh_embracing_2020} summarized mixup augmentation method gives "soft labels". Variations of the mixup method utilize asymmetric is further explored in \cite{li_overfitting_2019} trained on Brain MR images, and the method reports huge gain under their experiment setup.
 
 \subsection{Learning for augmentation}
-Following the traditional augmentation methods, we here want to discuss a few medical image augmentation based on deep learning. Specifically we focus on those who used one or a few data during the augmentation which is close to the problem we are facing.\\
+Following the traditional augmentation methods, we here want to discuss a few medical image augmentation based on deep learning. Specifically we focus on those who used one or a few data during the augmentation so that it follows the small sample segmentation setup.\\
 
 %TODO citation in adversarial defense
-Adversarial defense was deployed in \cite{suk_brain_2019} for the augmentation of small samples in Brain MR segmentation. Adversarial samples generated though Fast Gradient Sign Method\cite{goodfellow_explaining_2015} and then added as training data to improve the robustness. So far we believe this method worth trying because the experiment was trained on 7 brain volumes, which is close to our task.\\
+Adversarial defense was deployed in \cite{suk_brain_2019} for the augmentation of small samples in Brain MR segmentation. Adversarial samples generated though Fast Gradient Sign Method\cite{goodfellow_explaining_2015} and then added as training data to improve the robustness. Paper in \cite{chen_one-shot_2020} leverage paired MRI-CT data to construct a cycle-GAN model that convert an given MRI to a CT style image to segment Craniomaxillofacial Bone structure.\\
 
 \begin{table}
 \begin{tabular}{lllll}
@@ -157,14 +185,13 @@ Paper                                             & Method                      
 \cite{zhang_mixup_2018}       & mixup                         & CIFAR 10             & Huge              &  \\
 \cite{panfilov_improving_2019} & mixup                         & Knee MR images       & 88 3D MRI         &  \\
 \cite{li_overfitting_2019}   & Asymmetric mixup              & BraTS               &  not specified             &  \\
-%\cite{suk_brain_2019}                    & Adversarial defense           & MRBrainS18 challenge & 7 train, 14 test  &  \\
+\cite{suk_brain_2019}                    & Adversarial defense           & MRBrainS18 challenge & 7 train, 14 test  &  \\
+\cite{chen_one-shot_2020} &  Cycle GAN &  Brain CT and MR&1 MRI-CT pair; Large MRI\\
 \hline
 \end{tabular}
 \caption{Data Augmentation methods}
 \label{tab:Augtable}
 \end{table}
-
-\subsection{Network}
 
 \subsection{Transfer Learning}
 In medical domain, few shot learning mainly focus on transfer learning from pre-trained networks that leverage both medical and non-medical datasets.\\
@@ -204,14 +231,14 @@ Paper    & Method                                & Domain Details               
 \end{table}	
 
 \subsection{Learning with unlabelled data}
-Another common scenario with medical imaging is that, a small set of labelled annotations is available and a relatively larger set of data was collected but not labelled. In this section, we briefly mention three types of work that leverage unlabelled data: training encoder, noise removing, and semi-supervise learning. Both training encoder and noise removing serves as a pretrained network that are usually fined-tuned using the methods we described in the previous section. Semi-supervise learning however, {\color{red} How to describe this}
+Another common scenario with medical imaging is that, a small set of labelled annotations is available and a relatively larger set of data was collected but not labelled. In this section, we briefly mention three types of work that leverage unlabelled data: training encoder, noise removing, and semi-supervise learning. Both training encoder and noise removing serves as a pretrained network that are usually fined-tuned using the methods we described in the previous section. Semi-supervise learning was proposed to further make use of the unlabeled samples to guide the network update more directly throughout the training process.
 
 \subsubsection{Training encoder as initialization}
-Training encoder part without expert labeling usually make use of spatial information of the image such as slice order \cite{aaaaa} and direction \cite{bbbbb}. \\
+Training encoder part without expert labeling usually make use of spatial information of the image such as slice order \cite{10.1007/978-3-319-66179-7_47} and direction \cite{8759553}. \\
 
-In the work \cite{bbb}, authors trained a network to predict a transformation of orientation by rotating or flipping the input slice, and then fine tune the network to classify retinal imaged of diabetes patients. One potential use of this type of initialzation for segmentation task is that we can append the Up-Convolution then transfer on segmentation labels.\\
+In the work \cite{8759553}, authors trained a network to predict a transformation of orientation by rotating or flipping the input slice, and then fine tune the network to classify retinal imaged of diabetes patients. One potential use of this type of initialzation for segmentation task is that we can append the Up-Convolution then transfer on segmentation labels.\\
 
-Paper \cite{aaa} trained a encoder that, given a reference slice and a prediction slice, predict the prediction slice is above of behind the reference slide so that the network can learn spatial information using the unlabelled images.\\
+Paper \cite{10.1007/978-3-319-66179-7_47} trained a encoder that, given a reference slice and a prediction slice, predict the prediction slice is above of behind the reference slide so that the network can learn spatial information using the unlabelled images.\\
 
 \subsubsection{Noise removing}
 Instead of training a surrogate task such as training encoder leveraging spatial or location information as a pretraining task, Zongwei Zhou \cite{zhou_models_2019} provided another probability for pretraining both encoder and decoder that used together can serve as weight initialization for a segmentation model, and encoder used on its own is a pretrained feauture extractor for classification task.\\
@@ -226,7 +253,8 @@ The work trained a Unet-style network that given a randomly cropped and sliced i
 \end{figure}
 
 \subsubsection{Semi-supervise}
-Semi supervise approach usually add a prediction consistency loss during training. \cite{tarvainen_mean_2018} propsed a teacher-student training strategt such that two networks are train together. The proposed so called 'Mean-teacher' network trained two network simultaneusly. First the author train a model on the fully labeled dataset, that serve as the teacher model. In the beginning of the semi-supervise training, a copy of the teacher model is also created called the student network. Now given a new set of unlabelled raw images, the student network are trained using the weight of psuedo-label cost and the prediction consistency cost. The teacher model weights are updated periodically using an exponential moving average of the student network. Figure \ref{fig:mean-teacher} explains the training process. \\
+Semi supervise approach usually add a prediction consistency loss during training. \cite{tarvainen_mean_2018} propsed a teacher-student training strategt such that two networks are train together. The proposed so called 'Mean-teacher' network trained two network simultaneusly. The network design consists of two isomorphic networks that serves as teacher and student. In the beginning of the semi-supervise training, a copy of the teacher model is also created called the student network. For expert-labelled samples, the student model was update using the prediction loss.
+Now given a new set of unlabelled raw images, the student network are trained using the prediction consistency cost between student and teacher model. The teacher model weights are updated periodically using an exponential moving average of the student network instead of back propogate the loss directly. Figure \ref{fig:mean-teacher} explains the training process. \\
 
 We here further gives the defnition in the original work \cite{tarvainen_mean_2018}. More formally, define the consistency of the prediction as:
 $$J(\theta)=\mathbb{E}_{x, \eta^{\prime}, \eta}\left[\left\|f\left(x, \theta^{\prime}, \eta^{\prime}\right)-f(x, \theta, \eta)\right\|^{2}\right]$$
@@ -274,7 +302,5 @@ First let $l$ denotes the output of layer over a dataset $D$, The paper perform 
 	\item The correlation of two subspaces is the average of each output correlation $\rho_{l_{1}, l_{2}} = \frac{1}{N}\sum_{i=0}^{N} \rho_{i}$
 \end{itemize}
 
-SVCCA interpret the result of any two learnt subspace over a dataset. Later in work \cite{raghu_transfusion_2019}, the author utilized the method to understand the behavior of transfer learning in rather larger amounts of data on medical classification task.\\
-\newpage
-\section{Ethics and professional considerations}
+SVCCA interprets the result of any two learnt subspace over a dataset. Later in work \cite{raghu_transfusion_2019}, the author utilized the method to understand the behavior of transfer learning in rather larger amounts of data on medical classification task.\\
 \newpage

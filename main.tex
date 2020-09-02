@@ -6,7 +6,7 @@
 % Edit these to provide the correct information
 % e.g. \newcommand{\reportauthor}{Timothy Kimber}
 
-\newcommand{\reporttitle}{I need a title}
+\newcommand{\reporttitle}{Small sample segmentation on Lung CT Scans}
 \newcommand{\reportauthor}{Tianyang Sun}
 \newcommand{\supervisor}{Dr Benny Lo}
 \newcommand{\degreetype}{MSc Computing}
@@ -19,7 +19,7 @@
 % load some macros
 \input{notation}
 
-\date{June 2020}
+\date{September 2020}
 
 \begin{document}
 
@@ -34,13 +34,21 @@
 \pagestyle{fancy}
 
 \begin{abstract}
-Your abstract.
+The Computer aided diagnosis (CAD) has witness great progress in presence with deep Convolutional Neural Networks, while a large set of carefully labelled data for specific disease for segmentation training is time-consuming and rarely available for public research.\\
+
+In this work, we focus on the medical segmentation task on small sample annotated Covid-19 Lung CT scans. This project investigated two common scenarios: (1) A small set of annotated samples, and (2) A small set of annotated samples with a relative larger unlabeled data. \\
+
+We first evaluated several transfer learning frameworks: Fine tune all, and freezing different layers of encoder in comparison with random initialization for not only the segmentation accuracy, but also the layer-wise difference using SVCCA tool. \\
+
+Then, given the unlabeled data, we further designed a semi-supervise pipeline to improve the generalizability of the model, including iterative psuedo-labeling and Exponential Moving Averaging training. The pipeline improved the accuracy from transfer learning from 
 \end{abstract}
 
 \cleardoublepage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Acknowledgments}
-Comment this out if not needed.
+I would like to express my sincere thanks to my supervisor Dr. Benny Lo for his support and supervision of this project. \\
+
+For my beloved family, my dear friends, and myself.
 
 \clearpage{\pagestyle{empty}\cleardoublepage}
 
@@ -67,11 +75,11 @@ Comment this out if not needed.
 
 \input{02_background}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Data}
-
-\input{03_data}
+%\chapter{Data}
+%
+%\input{03_data}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Deep learning architecture}
+\chapter{Experimental Design}
 
 \input{04_archeitecture}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -83,8 +91,9 @@ Comment this out if not needed.
 
 \input{06_conclution.tex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{Appendix.tex}
+%\input{Appendix.tex}
 
+\input{ethics_checklist}
 
 %% bibliography
 \bibliographystyle{IEEEtran}

@@ -1,3 +1,9 @@
 \section{Conclusion}
+Medical segmentation on some less desired datasets in medical imaging domain focus on giving good prediction accuracy using a small amount of labelled training samples and with or without the help of non-labelled dataset. The studies in this field brings lots of benefits in the medical domain when small amount of training samples is a common scenario facing with limited resource or rarity of disease.\\
+
+In this project, we conducted our research on the fast changing of Covid-19 data and focused our attention on segmentation tasks. We covered the two typical small sample segmentation in the project. First we perform transfer learning that we fine tuned the model to deal with the issue of the lack of data. One aspect of our work on transfer learning is that we evaluated the model using the SVCCA tool which gives us a sneak of intuition on the transfer learning process for segmentation tasks.\\
+
+We further covered the case when a larger sets of unlabelled data is available -- Semi-supervise learning that we build a pipeline of transfer learning, psuedo-labling and mean-teacher training to improve the training process.
 
 \section{Future work}
+On hindsight, there are several improvements this work can be explored. First of all, researchers kept exploring the explainability of Neural Networks, especially in the medical imaging domain. For classification tasks given the segmentation mask, the Class Activation Map can be used to guide a better attention during network training \cite{Ouyang_2020}. Second, if future public dataset contains the follow-up CT scans of patients over a period of time, potential way for medical segmentation is to segment the infection area and perform image registration so that we can analyze the growing and absorption of infection area to better guide the clinical process.
